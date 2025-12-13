@@ -353,6 +353,13 @@
             box-shadow: var(--shadow-medium);
         }
 
+        /* 移动端隐藏顶部导航栏（因为侧边栏已经有完整导航） */
+        @media screen and (max-width: 768px) {
+            .app-nav {
+                display: none !important;
+            }
+        }
+
         /* ==================== Logo ==================== */
         .app-name-link {
             font-size: 1.4rem !important;
@@ -658,8 +665,7 @@
             border-collapse: collapse;
             width: 100%;
             max-width: 100%;
-            min-width: 100%;
-            table-layout: fixed;
+            table-layout: auto;
             margin: 1.5em 0;
             border-radius: 8px;
             overflow: hidden;
@@ -675,17 +681,7 @@
             font-weight: 600;
             text-align: left;
             word-wrap: break-word;
-        }
-
-        /* 第一列（文章）较窄，第二列（简介）较宽 */
-        .markdown-section table th:first-child,
-        .markdown-section table td:first-child {
-            width: 35%;
-        }
-
-        .markdown-section table th:last-child,
-        .markdown-section table td:last-child {
-            width: 65%;
+            white-space: nowrap;
         }
 
         .markdown-section table td {
@@ -798,7 +794,7 @@
 
         .pagination-item-title {
             display: block;
-            font-size: 15px;
+            font-size: 13px;
             font-weight: 500;
             color: var(--text-color) !important;
             line-height: 1.4;
@@ -973,14 +969,15 @@
             loadSidebar: true,
             autoHeader: false,  // 禁用自动标题，避免重复
             subMaxLevel: 3,
-            // 所有页面使用统一的侧边栏（约定大于配置）
+            // 所有页面使用统一的侧边栏和导航栏
             alias: {
-                '/.*/_sidebar.md': '/_sidebar.md'
+                '/.*/_sidebar.md': '/_sidebar.md',
+                '/.*/_navbar.md': '/_navbar.md'
             },
             
             // ==================== 导航栏配置 ====================
             loadNavbar: true,
-            mergeNavbar: true,
+            mergeNavbar: false,  // 禁止在移动端合并 navbar 到侧边栏
             
             // ==================== 页面行为 ====================
             auto2top: true,
@@ -1098,6 +1095,20 @@
     
     <!-- 外部脚本支持 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/external-script.min.js"></script>
+    
+    <!-- Mermaid 图表支持 -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+    // Mermaid 配置
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: 'default',
+      securityLevel: 'loose',
+      flowchart: { useMaxWidth: true, htmlLabels: true }
+    });
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
+
 
 </body>
 

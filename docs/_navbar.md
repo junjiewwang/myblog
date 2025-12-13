@@ -13,4 +13,6 @@
 
 * [🔢 算法](/data_structure_algorithms/binary_tree/binary_tree.md)
 
+* [🎵 音乐](/music/guitar-learning.md)
+
 * [🔗 GitHub](https://github.com/wjj815/myblog)

@@ -30,3 +30,6 @@
 * **🔢 算法**
   * [二叉树遍历](/data_structure_algorithms/binary_tree/binary_tree.md)
   * [LeetCode 树类题解](/leetcode/tree/tree.md)
+
+* **🎵 音乐**
+  * [🎸 吉他学习笔记](/music/guitar-learning.md)
