@@ -657,11 +657,15 @@
         .markdown-section table {
             border-collapse: collapse;
             width: 100%;
+            max-width: 100%;
+            min-width: 100%;
+            table-layout: fixed;
             margin: 1.5em 0;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: var(--shadow-light);
             border: 1px solid var(--border-color);
+            display: table;
         }
 
         .markdown-section table th {
@@ -670,6 +674,18 @@
             padding: 12px 16px;
             font-weight: 600;
             text-align: left;
+            word-wrap: break-word;
+        }
+
+        /* 第一列（文章）较窄，第二列（简介）较宽 */
+        .markdown-section table th:first-child,
+        .markdown-section table td:first-child {
+            width: 35%;
+        }
+
+        .markdown-section table th:last-child,
+        .markdown-section table td:last-child {
+            width: 65%;
         }
 
         .markdown-section table td {
@@ -677,6 +693,7 @@
             border-bottom: 1px solid var(--border-color);
             color: var(--text-color) !important;
             background: var(--bg-color);
+            word-wrap: break-word;
         }
 
         .markdown-section table tr:last-child td {
@@ -856,6 +873,37 @@
             max-width: 100%;
         }
 
+        /* ==================== 代码复制按钮 ==================== */
+        .docsify-copy-code-button {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            padding: 4px 10px !important;
+            border-radius: 4px !important;
+            background: rgba(255, 255, 255, 0.1) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            color: rgba(255, 255, 255, 0.7) !important;
+            transition: all 0.2s ease !important;
+            cursor: pointer !important;
+            backdrop-filter: blur(4px) !important;
+        }
+
+        .docsify-copy-code-button:hover {
+            background: rgba(255, 255, 255, 0.2) !important;
+            color: white !important;
+            border-color: rgba(255, 255, 255, 0.4) !important;
+        }
+
+        /* 复制成功状态 */
+        .docsify-copy-code-button.success {
+            background: var(--theme-color) !important;
+            border-color: var(--theme-color) !important;
+            color: white !important;
+        }
+
+        .docsify-copy-code-button.success::after {
+            content: ' ✓';
+        }
+
         /* ==================== 进度条 ==================== */
         .progress {
             background: var(--theme-color) !important;
@@ -988,8 +1036,8 @@
             
             // ==================== 代码复制 ====================
             copyCode: {
-                buttonText: '复制',
-                successText: '已复制!'
+                buttonText: '📋 复制',
+                successText: '已复制'
             },
             
             // ==================== Tabs 配置 ====================

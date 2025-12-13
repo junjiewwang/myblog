@@ -1,35 +1,68 @@
-# 🌈 个人技术博客
+# 后端工程师的实战笔记
 
-> 记录学习与成长的点滴 ✨
+> 记录真实的开发经验，解决实际问题
 
 ---
 
-## 👋 欢迎
+## ⭐ 精选文章
 
-这是我的个人技术博客，主要记录日常学习和工作中的技术笔记。
+### 深度教程
 
-## 📚 内容分类
-
-| 分类 | 描述 |
+| 文章 | 简介 |
 |------|------|
-| ☕ Java | Java 核心技术、JVM、并发编程 |
-| 🌱 Spring | Spring Boot、Spring Cloud 实战 |
-| 🐹 Golang | Go 语言学习笔记 |
-| 🐧 Linux | Linux 运维、Shell 脚本 |
-| 🌐 Nginx | Nginx 配置与优化 |
-| 🍎 Mac | Mac 效率工具与技巧 |
-| 💡 LeetCode | 算法题解与思路 |
+| [Go 语言完整学习指南](/programmingLanguage/golang_study/GolangStudy.md) | 从入门到实战的系统教程，涵盖基础语法、并发编程、项目实战 |
 
-## 🚀 快速开始
+### 问题排查
 
-使用左侧导航栏浏览文章，或使用顶部搜索框快速查找内容。
+| 文章 | 简介 |
+|------|------|
+| [一次 Java HPROF 解析器的深度调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md) | 二进制格式解析与 Bug 定位的完整排查过程 |
 
-## 📝 最近更新
+### 实用配置
 
-- [Java HPROF 解析器调试之旅](java/一次Java%20HPROF解析器的深度调试之旅.md)
-- [Golang 基础学习](programmingLanguage/golang_study/GolangStudy.md)
-- [Spring 分包运行配置](springboot/spring_use_maven_divided_jar_run.md)
+| 文章 | 简介 |
+|------|------|
+| [Docker 容器运行 GUI 程序 (Linux)](/linux/docker_x11_gui.md) | 在 Docker 中运行 IDEA 等 GUI 程序 |
+| [Docker 容器运行 GUI 程序 (Mac)](/mac/docker_gui.md) | Mac 上配置 Docker 显示 GUI 的完整方案 |
+| [Nginx 配置模板集合](/nginx/nginx_config.md) | 代理、WebSocket、文件服务等常用配置 |
+| [SpringBoot 分包部署](/springboot/spring_use_maven_divided_jar_run.md) | Maven 分离依赖，优化部署体积 |
 
 ---
 
-📅 持续更新中...
+## 📚 全部文章
+
+### ☕ Java & Spring
+
+- [Java HPROF 调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
+- [SpringBoot 分包部署](/springboot/spring_use_maven_divided_jar_run.md)
+- [Spring 代理问题记录](/springboot/spring_qa_record.md)
+- [Swagger-UI 整合](/springboot/swagger-ui.md)
+
+### 🐹 Go 语言
+
+- [Go 语言完整学习指南](/programmingLanguage/golang_study/GolangStudy.md)
+
+### 🔧 DevOps & 运维
+
+- [Docker GUI 配置 (Linux)](/linux/docker_x11_gui.md)
+- [Docker GUI 配置 (Mac)](/mac/docker_gui.md)
+- [Nginx 配置集合](/nginx/nginx_config.md)
+- [Nginx 目录映射](/nginx/mapping_directory.md)
+- [VNC Server 安装](/linux/linux_vncserver.md)
+- [Vim 命令速查](/linux/linux_vim.md)
+
+### 🍎 Mac 效率
+
+- [Homebrew 使用记录](/mac/brew_record.md)
+- [Alfred 使用技巧](/mac/alfred_record.md)
+
+### 🔢 算法
+
+- [二叉树遍历算法](/data_structure_algorithms/binary_tree/binary_tree.md)
+- [LeetCode 树类题解](/leetcode/tree/tree.md)
+
+---
+
+<p align="center">
+  <sub>📅 持续更新中 | 💡 专注深度，拒绝水文</sub>
+</p>

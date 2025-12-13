@@ -24,21 +24,16 @@ const OUTPUT_FILE = path.join(DOCS_DIR, '_sidebar.md');
 // 目录映射（可自定义分类名称和图标）
 const CATEGORY_MAP = {
     'java': { name: 'Java', icon: '☕' },
-    'spring': { name: 'Spring', icon: '🌱' },
-    'springboot': { name: 'SpringBoot', icon: '🚀' },
-    'programmingLanguage': { name: '编程语言', icon: '💻' },
+    'springboot': { name: 'Java & Spring', icon: '☕' },
+    'programmingLanguage': { name: 'Go 语言', icon: '🐹' },
     'golang_study': { name: 'Golang', icon: '🐹' },
     'linux': { name: 'Linux', icon: '🐧' },
-    'mac': { name: 'Mac', icon: '🍎' },
+    'mac': { name: 'Mac 效率', icon: '🍎' },
     'nginx': { name: 'Nginx', icon: '🌐' },
-    'mybatis': { name: 'MyBatis', icon: '🗃️' },
-    'nodejs': { name: 'Node.js', icon: '📦' },
-    'data_structure_algorithms': { name: '数据结构与算法', icon: '🔢' },
+    'data_structure_algorithms': { name: '算法', icon: '🔢' },
     'binary_tree': { name: '二叉树', icon: '🌳' },
     'tree': { name: '树', icon: '🌲' },
     'leetcode': { name: 'LeetCode', icon: '💡' },
-    'interview': { name: '面试', icon: '📝' },
-    'vscode': { name: 'VSCode', icon: '🛠️' },
 };
 
 // 忽略的目录和文件
