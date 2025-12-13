@@ -1,0 +1,16 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "个人技术博客 - 基于 Docsify",
+  "scripts": {
+    "dev": "docsify serve docs",
+    "sidebar": "node scripts/generate-sidebar.js",
+    "new": "node scripts/new-post.js"
+  },
+  "keywords": ["blog", "docsify", "技术博客"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "docsify-cli": "^4.4.4"
+  }
+}

@@ -1,30 +1,35 @@
-# 🌈 个人博客 ☀️🌛
+# 🌈 个人技术博客
 
-> 学习记录
+> 记录学习与成长的点滴 ✨
 
-## Spring 
-  * [spring_use_maven_divided_jar_run](springboot/spring_use_maven_divided_jar_run)
+---
 
-## Nginx 
+## 👋 欢迎
 
-##  Mac
+这是我的个人技术博客，主要记录日常学习和工作中的技术笔记。
 
-* [Mac 效率工具](/mac/README.md)
+## 📚 内容分类
 
-## 👨🏻‍💻 编程
+| 分类 | 描述 |
+|------|------|
+| ☕ Java | Java 核心技术、JVM、并发编程 |
+| 🌱 Spring | Spring Boot、Spring Cloud 实战 |
+| 🐹 Golang | Go 语言学习笔记 |
+| 🐧 Linux | Linux 运维、Shell 脚本 |
+| 🌐 Nginx | Nginx 配置与优化 |
+| 🍎 Mac | Mac 效率工具与技巧 |
+| 💡 LeetCode | 算法题解与思路 |
 
-* [编程语言学习](programmingLanguage/README.md)
+## 🚀 快速开始
 
-<!-- * nginx
-  * [nginx 配置记录](nginx/nginx_config.md)
-  * [nginx 配置文件浏览器](nginx/mapping_directory.md)
-* linux
-  * [vim](linux/linux_vim.md)
-  * [vnc](linux/linux_vncserver.md)
-  * [shell](linux/linux_shell.md)
-* mac
-  * [brew](mac/brew.md)
-  * [docker_gui](mac/docker_gui.md)
+使用左侧导航栏浏览文章，或使用顶部搜索框快速查找内容。
 
-* golang
-  * [golang学习笔记](golang_study/GolangStudy.md) -->
+## 📝 最近更新
+
+- [Java HPROF 解析器调试之旅](java/一次Java%20HPROF解析器的深度调试之旅.md)
+- [Golang 基础学习](programmingLanguage/golang_study/GolangStudy.md)
+- [Spring 分包运行配置](springboot/spring_use_maven_divided_jar_run.md)
+
+---
+
+📅 持续更新中...
