@@ -128,7 +128,7 @@
             visibility: hidden !important;
         }
 
-        /* 主按钮样式 - 优雅的胶囊形状 */
+        /* 桌面端 - 胶囊形状按钮 */
         body .sidebar-toggle,
         .sidebar-toggle {
             position: fixed !important;
@@ -172,7 +172,7 @@
             visibility: hidden !important;
         }
 
-        /* 使用双箭头样式 «  */
+        /* 桌面端箭头样式 */
         body .sidebar-toggle::before,
         .sidebar-toggle::before {
             content: '' !important;
@@ -262,63 +262,99 @@
             }
         }
 
-        /* 移动端适配 - 浮动按钮移到右下角，更小巧 */
+        /* ==================== 移动端 - 滑动指示器 ==================== */
         @media screen and (max-width: 768px) {
+            /* 隐藏原有的切换按钮 */
             body .sidebar-toggle,
             .sidebar-toggle {
-                top: auto !important;
-                bottom: 20px !important;
-                left: auto !important;
-                right: 16px !important;
-                width: 40px !important;
-                height: 40px !important;
-                max-width: 40px !important;
-                background: var(--theme-color) !important;
-                border: none !important;
-                border-radius: 50% !important;
-                opacity: 0.85 !important;
-                box-shadow: 0 2px 12px rgba(66, 185, 131, 0.35) !important;
+                display: none !important;
+            }
+        }
+
+        /* 滑动指示器样式 - 仅移动端显示 */
+        .swipe-indicator {
+            display: none;
+        }
+
+        @media screen and (max-width: 768px) {
+            .swipe-indicator {
+                display: flex;
+                position: fixed;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 6px;
+                height: 60px;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                z-index: 90;
+                pointer-events: none;
+                opacity: 0.4;
+                transition: all 0.3s ease;
             }
 
-            body .sidebar-toggle:hover,
-            .sidebar-toggle:hover {
-                width: 40px !important;
-                max-width: 40px !important;
-                opacity: 1 !important;
-                transform: scale(1.05) !important;
-                box-shadow: 0 4px 16px rgba(66, 185, 131, 0.5) !important;
+            /* 指示条 - 细长的竖线 */
+            .swipe-indicator-line {
+                width: 3px;
+                height: 40px;
+                background: linear-gradient(to bottom, 
+                    transparent 0%, 
+                    var(--theme-color) 30%, 
+                    var(--theme-color) 70%, 
+                    transparent 100%);
+                border-radius: 2px;
             }
 
-            body .sidebar-toggle::before,
-            .sidebar-toggle::before {
-                width: 8px !important;
-                height: 8px !important;
-                border-color: white !important;
-                margin-left: 3px !important;
-                border-width: 2px !important;
+            /* 小箭头指示 */
+            .swipe-indicator-arrow {
+                width: 6px;
+                height: 6px;
+                border-right: 2px solid var(--theme-color);
+                border-top: 2px solid var(--theme-color);
+                transform: rotate(45deg);
+                margin-top: 4px;
+                animation: swipeHint 2s ease-in-out infinite;
             }
 
-            body .sidebar-toggle:hover::before,
-            .sidebar-toggle:hover::before {
-                transform: rotate(45deg) !important;
+            @keyframes swipeHint {
+                0%, 100% {
+                    transform: rotate(45deg) translateX(0);
+                    opacity: 0.6;
+                }
+                50% {
+                    transform: rotate(45deg) translateX(3px);
+                    opacity: 1;
+                }
             }
 
-            /* 侧边栏打开时，按钮保持在右下角 */
-            body.close .sidebar-toggle {
-                right: 16px !important;
-                left: auto !important;
-                border: none !important;
+            /* 侧边栏打开时 - 指示器移到侧边栏右侧并反向 */
+            body.close .swipe-indicator {
+                left: var(--sidebar-width);
+                opacity: 0.3;
             }
 
-            body.close .sidebar-toggle::before {
-                margin-left: 0 !important;
-                margin-right: 3px !important;
+            body.close .swipe-indicator-arrow {
+                transform: rotate(-135deg);
+                animation: swipeHintReverse 2s ease-in-out infinite;
             }
 
-            /* 侧边栏展开时也保持在右下角 */
-            body:not(.close) .sidebar-toggle {
-                right: 16px !important;
-                left: auto !important;
+            @keyframes swipeHintReverse {
+                0%, 100% {
+                    transform: rotate(-135deg) translateX(0);
+                    opacity: 0.6;
+                }
+                50% {
+                    transform: rotate(-135deg) translateX(3px);
+                    opacity: 1;
+                }
+            }
+
+            /* 深色模式 */
+            @media (prefers-color-scheme: dark) {
+                .swipe-indicator {
+                    opacity: 0.5;
+                }
             }
         }
 
@@ -662,38 +698,54 @@
 
         /* ==================== 表格 ==================== */
         .markdown-section table {
-            border-collapse: collapse;
-            width: 100%;
-            max-width: 100%;
-            table-layout: auto;
-            margin: 1.5em 0;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: var(--shadow-light);
-            border: 1px solid var(--border-color);
-            display: table;
+            display: table !important;
+            border-collapse: collapse !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            table-layout: auto !important;
+            margin: 1.5em 0 !important;
+            border-radius: 8px !important;
+            overflow: hidden !important;
+            box-shadow: var(--shadow-light) !important;
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .markdown-section table thead {
+            display: table-header-group !important;
+        }
+
+        .markdown-section table tbody {
+            display: table-row-group !important;
+        }
+
+        .markdown-section table tr {
+            display: table-row !important;
+        }
+
+        .markdown-section table th,
+        .markdown-section table td {
+            display: table-cell !important;
         }
 
         .markdown-section table th {
             background: var(--theme-color) !important;
             color: white !important;
-            padding: 12px 16px;
-            font-weight: 600;
-            text-align: left;
-            word-wrap: break-word;
-            white-space: nowrap;
+            padding: 12px 16px !important;
+            font-weight: 600 !important;
+            text-align: center !important;
+            white-space: nowrap !important;
         }
 
         .markdown-section table td {
-            padding: 12px 16px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 12px 16px !important;
+            border-bottom: 1px solid var(--border-color) !important;
             color: var(--text-color) !important;
-            background: var(--bg-color);
-            word-wrap: break-word;
+            background: var(--bg-color) !important;
+            text-align: center !important;
         }
 
         .markdown-section table tr:last-child td {
-            border-bottom: none;
+            border-bottom: none !important;
         }
 
         .markdown-section table tr:hover td {
@@ -829,6 +881,67 @@
             .markdown-section h2 {
                 font-size: 1.3rem;
             }
+
+            /* 移动端内容区域增加边距 */
+            .markdown-section {
+                padding: 0 12px !important;
+                max-width: 100% !important;
+                overflow-x: hidden !important;
+            }
+
+            /* 移动端表格优化 - 填满容器宽度 */
+            .markdown-section table {
+                display: table !important;
+                width: 100% !important;
+                min-width: 100% !important;
+                max-width: 100% !important;
+                table-layout: fixed !important;
+                margin: 0 !important;
+                border-radius: 8px !important;
+                border-collapse: collapse !important;
+            }
+
+            /* 表格容器 - 实现横向滚动 */
+            .table-wrapper {
+                display: block !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                -webkit-overflow-scrolling: touch;
+                margin: 1.5em 0 !important;
+                border-radius: 8px;
+                border: 1px solid var(--border-color);
+            }
+
+            .table-wrapper table {
+                border: none !important;
+                margin: 0 !important;
+                width: max-content !important;
+                min-width: 100% !important;
+                table-layout: auto !important;
+            }
+
+            .markdown-section table th,
+            .markdown-section table td {
+                display: table-cell !important;
+                padding: 8px 10px !important;
+                font-size: 12px !important;
+                white-space: nowrap !important;
+            }
+
+            /* 确保表格行正常显示 */
+            .markdown-section table tr {
+                display: table-row !important;
+            }
+
+            .markdown-section table thead {
+                display: table-header-group !important;
+            }
+
+            .markdown-section table tbody {
+                display: table-row-group !important;
+            }
         }
 
         /* ==================== 滚动条 ==================== */
@@ -910,6 +1023,57 @@
             fill: var(--theme-color);
         }
 
+        /* ==================== 回到顶部按钮 ==================== */
+        #back-to-top {
+            position: fixed;
+            right: 20px;
+            bottom: 80px;
+            width: 40px;
+            height: 40px;
+            background: var(--theme-color);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 12px rgba(66, 185, 131, 0.35);
+            z-index: 99;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #back-to-top.show {
+            opacity: 0.85;
+            visibility: visible;
+        }
+
+        #back-to-top:hover {
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 16px rgba(66, 185, 131, 0.5);
+        }
+
+        #back-to-top::before {
+            content: '';
+            width: 10px;
+            height: 10px;
+            border-left: 2px solid white;
+            border-top: 2px solid white;
+            transform: rotate(45deg) translateY(2px);
+        }
+
+        /* 移动端适配 */
+        @media screen and (max-width: 768px) {
+            #back-to-top {
+                right: 16px;
+                bottom: 70px;
+                width: 36px;
+                height: 36px;
+            }
+        }
+
         /* ==================== 深色模式特定覆盖 ==================== */
         @media (prefers-color-scheme: dark) {
             .content, .markdown-section, body, main {
@@ -957,6 +1121,15 @@
 
 <body>
     <div id="app"></div>
+    
+    <!-- 移动端滑动指示器 -->
+    <div id="swipe-indicator" class="swipe-indicator">
+        <div class="swipe-indicator-line"></div>
+        <div class="swipe-indicator-arrow"></div>
+    </div>
+    
+    <!-- 回到顶部按钮 -->
+    <button id="back-to-top" title="回到顶部"></button>
     
     <script>
         window.$docsify = {
@@ -1108,6 +1281,150 @@
     });
     </script>
     <script src="//cdn.jsdelivr.net/npm/docsify-mermaid@2/dist/docsify-mermaid.js"></script>
+
+    <!-- 回到顶部功能 -->
+    <script>
+    (function() {
+        var btn = document.getElementById('back-to-top');
+        var content = document.querySelector('.content');
+        
+        function checkScroll() {
+            // 获取内容区域的滚动容器
+            var scrollContainer = document.querySelector('.content') || document.querySelector('main') || window;
+            var scrollTop = scrollContainer.scrollTop || window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > 300) {
+                btn.classList.add('show');
+            } else {
+                btn.classList.remove('show');
+            }
+        }
+        
+        function scrollToTop() {
+            var scrollContainer = document.querySelector('.content') || document.querySelector('main');
+            if (scrollContainer) {
+                scrollContainer.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        btn.addEventListener('click', scrollToTop);
+        
+        // 监听多个可能的滚动容器
+        window.addEventListener('scroll', checkScroll);
+        document.addEventListener('scroll', checkScroll, true);
+        
+        // 页面切换时重新检查
+        if (window.$docsify) {
+            window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+                hook.doneEach(function() {
+                    setTimeout(checkScroll, 100);
+                });
+            });
+        }
+    })();
+    </script>
+
+    <!-- 移动端滑动手势控制侧边栏 -->
+    <script>
+    (function() {
+        var touchStartX = 0;
+        var touchStartY = 0;
+        var isSwiping = false;
+        var minSwipeDistance = 50;
+        var edgeWidth = 40;
+        
+        function isMobile() {
+            return window.innerWidth <= 768 || 'ontouchstart' in window;
+        }
+        
+        // docsify-themeable 移动端的实际逻辑（和桌面端相反）：
+        // body 没有 close 类 = 侧边栏隐藏
+        // body 有 close 类 = 侧边栏显示
+        // 所以要打开侧边栏，需要添加 close 类！
+        
+        function isSidebarVisible() {
+            // 移动端：有 close 类表示侧边栏可见
+            return document.body.classList.contains('close');
+        }
+        
+        function openSidebar() {
+            // 添加 close 类来显示侧边栏
+            document.body.classList.add('close');
+        }
+        
+        function closeSidebar() {
+            // 移除 close 类来隐藏侧边栏
+            document.body.classList.remove('close');
+        }
+        
+        document.addEventListener('touchstart', function(e) {
+            if (!isMobile()) return;
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isSwiping = true;
+        }, { passive: true });
+        
+        document.addEventListener('touchend', function(e) {
+            if (!isMobile() || !isSwiping) return;
+            isSwiping = false;
+            
+            var touchEndX = e.changedTouches[0].clientX;
+            var touchEndY = e.changedTouches[0].clientY;
+            var deltaX = touchEndX - touchStartX;
+            var deltaY = Math.abs(touchEndY - touchStartY);
+            
+            // 确保是水平滑动
+            if (Math.abs(deltaX) < deltaY * 1.5) return;
+            
+            // 从左边缘向右滑动 → 打开侧边栏
+            if (deltaX > minSwipeDistance && touchStartX < edgeWidth && !isSidebarVisible()) {
+                openSidebar();
+                return;
+            }
+            
+            // 向左滑动 → 关闭侧边栏
+            if (deltaX < -minSwipeDistance && isSidebarVisible()) {
+                closeSidebar();
+                return;
+            }
+        }, { passive: true });
+    })();
+    </script>
+
+    <!-- 移动端表格自适应包装 -->
+    <script>
+    (function() {
+        function wrapTables() {
+            if (window.innerWidth > 768) return;
+            
+            var tables = document.querySelectorAll('.markdown-section table');
+            tables.forEach(function(table) {
+                // 如果已经包装过，跳过
+                if (table.parentElement.classList.contains('table-wrapper')) return;
+                
+                var wrapper = document.createElement('div');
+                wrapper.className = 'table-wrapper';
+                table.parentNode.insertBefore(wrapper, table);
+                wrapper.appendChild(table);
+            });
+        }
+        
+        // 页面加载和切换时执行
+        if (window.$docsify) {
+            window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+                hook.doneEach(function() {
+                    setTimeout(wrapTables, 100);
+                });
+            });
+        }
+        
+        // 初始执行
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(wrapTables, 500);
+        });
+    })();
+    </script>
 
 
 </body>
