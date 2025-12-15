@@ -106,12 +106,9 @@
 
 ## 学习资源
 
-### 推荐 APP
+### 学习网站
 
-- **GuitarTuna** - 调音器
-- **Yousician** - 互动学习
-- **Ultimate Guitar** - 吉他谱
-
+[吉他社](https://www.jitashe.org/)
 
 ---
 
