@@ -907,23 +907,11 @@
                 font-size: 1.3rem;
             }
 
-            /* 移动端内容区域增加边距 */
+            /* 移动端内容区域 */
             .markdown-section {
                 padding: 0 12px !important;
                 max-width: 100% !important;
                 overflow-x: hidden !important;
-            }
-
-            /* 移动端表格优化 - 填满容器宽度 */
-            .markdown-section table {
-                display: table !important;
-                width: 100% !important;
-                min-width: 100% !important;
-                max-width: 100% !important;
-                table-layout: fixed !important;
-                margin: 0 !important;
-                border-radius: 8px !important;
-                border-collapse: collapse !important;
             }
 
             /* 表格容器 - 实现横向滚动 */
@@ -937,22 +925,37 @@
                 margin: 1.5em 0 !important;
                 border-radius: 8px;
                 border: 1px solid var(--border-color);
+                box-shadow: var(--shadow-light);
+                /* 滚动条提示渐变 */
+                background: 
+                    linear-gradient(to right, var(--bg-color) 30%, transparent),
+                    linear-gradient(to left, var(--bg-color) 30%, transparent),
+                    linear-gradient(to right, rgba(0,0,0,0.08), transparent 15px),
+                    linear-gradient(to left, rgba(0,0,0,0.08), transparent 15px);
+                background-position: left center, right center, left center, right center;
+                background-repeat: no-repeat;
+                background-size: 20px 100%, 20px 100%, 15px 100%, 15px 100%;
+                background-attachment: local, local, scroll, scroll;
             }
 
             .table-wrapper table {
                 border: none !important;
                 margin: 0 !important;
-                width: max-content !important;
+                width: auto !important;
                 min-width: 100% !important;
                 table-layout: auto !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
             }
 
+            /* 移动端表格单元格 - 根据内容自适应 */
             .markdown-section table th,
             .markdown-section table td {
                 display: table-cell !important;
-                padding: 8px 10px !important;
-                font-size: 12px !important;
+                padding: 10px 12px !important;
+                font-size: 13px !important;
                 white-space: nowrap !important;
+                text-align: center !important;
             }
 
             /* 确保表格行正常显示 */
@@ -966,6 +969,38 @@
 
             .markdown-section table tbody {
                 display: table-row-group !important;
+            }
+
+            /* 移动端滚动条样式 */
+            .table-wrapper::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .table-wrapper::-webkit-scrollbar-thumb {
+                background: var(--theme-color-light);
+                border-radius: 3px;
+            }
+
+            .table-wrapper::-webkit-scrollbar-track {
+                background: var(--bg-color-secondary);
+                border-radius: 3px;
+            }
+
+            /* 滚动提示指示器 */
+            .table-wrapper.has-scroll::after {
+                content: '← 左右滑动 →';
+                display: block;
+                text-align: center;
+                font-size: 11px;
+                color: var(--text-color-tertiary);
+                padding: 6px 0 2px;
+                background: var(--bg-color);
+                border-top: 1px solid var(--border-color-light);
+            }
+
+            /* 已滚动到底时隐藏提示 */
+            .table-wrapper.scrolled-end::after {
+                display: none;
             }
         }
 
@@ -1450,7 +1485,39 @@
                 wrapper.className = 'table-wrapper';
                 table.parentNode.insertBefore(wrapper, table);
                 wrapper.appendChild(table);
+                
+                // 检测是否需要滚动
+                checkTableScroll(wrapper);
+                
+                // 监听滚动事件
+                wrapper.addEventListener('scroll', function() {
+                    updateScrollState(wrapper);
+                });
             });
+        }
+        
+        function checkTableScroll(wrapper) {
+            var table = wrapper.querySelector('table');
+            if (!table) return;
+            
+            // 如果表格宽度超过容器，添加滚动提示
+            if (table.scrollWidth > wrapper.clientWidth) {
+                wrapper.classList.add('has-scroll');
+            } else {
+                wrapper.classList.remove('has-scroll');
+            }
+        }
+        
+        function updateScrollState(wrapper) {
+            var scrollLeft = wrapper.scrollLeft;
+            var maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            
+            // 如果滚动到接近末尾，隐藏提示
+            if (scrollLeft >= maxScroll - 10) {
+                wrapper.classList.add('scrolled-end');
+            } else {
+                wrapper.classList.remove('scrolled-end');
+            }
         }
         
         // 页面加载和切换时执行
@@ -1465,6 +1532,12 @@
         // 初始执行
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(wrapTables, 500);
+        });
+        
+        // 窗口大小变化时重新检测
+        window.addEventListener('resize', function() {
+            var wrappers = document.querySelectorAll('.table-wrapper');
+            wrappers.forEach(checkTableScroll);
         });
     })();
     </script>
