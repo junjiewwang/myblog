@@ -283,37 +283,50 @@
                 left: 0;
                 top: 50%;
                 transform: translateY(-50%);
-                width: 6px;
-                height: 60px;
+                width: 28px;
+                height: 80px;
                 flex-direction: column;
                 align-items: center;
                 justify-content: center;
                 z-index: 90;
-                pointer-events: none;
-                opacity: 0.4;
+                pointer-events: auto;
+                cursor: pointer;
+                opacity: 0.6;
                 transition: all 0.3s ease;
+                background: linear-gradient(to right, 
+                    rgba(66, 185, 131, 0.1) 0%, 
+                    transparent 100%);
+                border-radius: 0 12px 12px 0;
+                -webkit-tap-highlight-color: transparent;
             }
 
-            /* 指示条 - 细长的竖线 */
+            .swipe-indicator:active {
+                opacity: 1;
+                background: linear-gradient(to right, 
+                    rgba(66, 185, 131, 0.25) 0%, 
+                    transparent 100%);
+            }
+
+            /* 指示条 - 细长的竖线（淡化处理） */
             .swipe-indicator-line {
                 width: 3px;
                 height: 40px;
                 background: linear-gradient(to bottom, 
                     transparent 0%, 
-                    var(--theme-color) 30%, 
-                    var(--theme-color) 70%, 
+                    rgba(66, 185, 131, 0.35) 30%, 
+                    rgba(66, 185, 131, 0.35) 70%, 
                     transparent 100%);
                 border-radius: 2px;
             }
 
             /* 小箭头指示 */
             .swipe-indicator-arrow {
-                width: 6px;
-                height: 6px;
-                border-right: 2px solid var(--theme-color);
-                border-top: 2px solid var(--theme-color);
+                width: 10px;
+                height: 10px;
+                border-right: 2.5px solid var(--theme-color);
+                border-top: 2.5px solid var(--theme-color);
                 transform: rotate(45deg);
-                margin-top: 4px;
+                margin-top: 6px;
                 animation: swipeHint 2s ease-in-out infinite;
             }
 
@@ -323,7 +336,7 @@
                     opacity: 0.6;
                 }
                 50% {
-                    transform: rotate(45deg) translateX(3px);
+                    transform: rotate(45deg) translateX(4px);
                     opacity: 1;
                 }
             }
@@ -331,7 +344,18 @@
             /* 侧边栏打开时 - 指示器移到侧边栏右侧并反向 */
             body.close .swipe-indicator {
                 left: var(--sidebar-width);
-                opacity: 0.3;
+                opacity: 0.5;
+                background: linear-gradient(to left, 
+                    rgba(102, 126, 234, 0.1) 0%, 
+                    transparent 100%);
+                border-radius: 12px 0 0 12px;
+            }
+
+            body.close .swipe-indicator:active {
+                opacity: 1;
+                background: linear-gradient(to left, 
+                    rgba(102, 126, 234, 0.25) 0%, 
+                    transparent 100%);
             }
 
             body.close .swipe-indicator-arrow {
@@ -345,7 +369,7 @@
                     opacity: 0.6;
                 }
                 50% {
-                    transform: rotate(-135deg) translateX(3px);
+                    transform: rotate(-135deg) translateX(4px);
                     opacity: 1;
                 }
             }
@@ -353,7 +377,11 @@
             /* 深色模式 */
             @media (prefers-color-scheme: dark) {
                 .swipe-indicator {
-                    opacity: 0.5;
+                    opacity: 0.7;
+                }
+                
+                body.close .swipe-indicator {
+                    opacity: 0.6;
                 }
             }
         }
@@ -1436,8 +1464,26 @@
             document.body.classList.remove('close');
         }
         
+        // 滑动指示器点击事件
+        var swipeIndicator = document.getElementById('swipe-indicator');
+        if (swipeIndicator) {
+            swipeIndicator.addEventListener('click', function(e) {
+                if (!isMobile()) return;
+                e.preventDefault();
+                e.stopPropagation();
+                
+                if (isSidebarVisible()) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+        }
+        
         document.addEventListener('touchstart', function(e) {
             if (!isMobile()) return;
+            // 如果点击的是指示器，不处理滑动
+            if (e.target.closest('.swipe-indicator')) return;
             touchStartX = e.touches[0].clientX;
             touchStartY = e.touches[0].clientY;
             isSwiping = true;
@@ -1445,6 +1491,8 @@
         
         document.addEventListener('touchend', function(e) {
             if (!isMobile() || !isSwiping) return;
+            // 如果点击的是指示器，不处理滑动
+            if (e.target.closest('.swipe-indicator')) return;
             isSwiping = false;
             
             var touchEndX = e.changedTouches[0].clientX;
