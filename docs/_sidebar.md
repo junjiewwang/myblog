@@ -14,6 +14,9 @@
   * [Spring 代理问题记录](/springboot/spring_qa_record.md)
   * [Swagger-UI 整合](/springboot/swagger-ui.md)
 
+* **📡 可观测性**
+  * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
+
 * **🐹 Go 语言**
   * [Go 语言学习指南](/programmingLanguage/golang_study/GolangStudy.md)
 
