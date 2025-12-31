@@ -39,3 +39,9 @@
 
 * **🎵 音乐**
   * [🎸 吉他学习笔记](/music/guitar-learning.md)
+  * [指板音名图](/music/guitar-fretboard.md)
+  * [CAGED 和弦系统](/music/guitar-caged.md)
+  * [音级与功能和声](/music/guitar-scale-degrees.md)
+  * [自然大调音阶](/music/guitar-major-scales.md)
+  * [五度圈](/music/guitar-circle-of-fifths.md)
+  * [调式与组成音](/music/guitar-modes.md)
