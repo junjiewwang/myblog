@@ -45,3 +45,4 @@
   * [自然大调音阶](/music/guitar-major-scales.md)
   * [五度圈](/music/guitar-circle-of-fifths.md)
   * [调式与组成音](/music/guitar-modes.md)
+  * [🎹 五线谱快速记忆](/music/piano-staff-memory.md)
