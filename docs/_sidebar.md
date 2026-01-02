@@ -15,6 +15,7 @@
   * [Swagger-UI 整合](/springboot/swagger-ui.md)
 
 * **📡 可观测性**
+  * [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
   * [OTel Java 二次开发经验](/observability/otel-java-development.md)
   * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
 
