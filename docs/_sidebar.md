@@ -18,6 +18,7 @@
   * [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
   * [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
   * [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
+  * [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md)
   * [OTel Java 二次开发经验](/observability/otel-java-development.md)
   * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
 
