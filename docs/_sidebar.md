@@ -17,6 +17,7 @@
 * **📡 可观测性**
   * [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
   * [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
+  * [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
   * [OTel Java 二次开发经验](/observability/otel-java-development.md)
   * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
 
