@@ -1387,6 +1387,185 @@
     
     <!-- 外部脚本支持 -->
     <script src="//cdn.jsdelivr.net/npm/docsify@4/lib/plugins/external-script.min.js"></script>
+    
+    <!-- Mermaid 图表支持 - 使用 9.x 稳定版 -->
+    <script src="//cdn.jsdelivr.net/npm/mermaid@9.4.3/dist/mermaid.min.js"></script>
+    <script>
+    // Mermaid 配置 - 支持亮/暗色自适应
+    (function() {
+        var isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        function getMermaidConfig() {
+            var currentIsDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return {
+                startOnLoad: false,
+                theme: currentIsDark ? 'dark' : 'default',
+                securityLevel: 'loose',
+                flowchart: { 
+                    useMaxWidth: true, 
+                    htmlLabels: true,
+                    curve: 'basis'
+                },
+                sequence: { 
+                    useMaxWidth: true,
+                    diagramMarginX: 8,
+                    diagramMarginY: 8,
+                    actorMargin: 50,
+                    width: 150,
+                    height: 50,
+                    boxMargin: 6,
+                    boxTextMargin: 4,
+                    noteMargin: 8,
+                    messageMargin: 35,
+                    mirrorActors: true
+                },
+                themeVariables: currentIsDark ? {
+                    // 深色主题
+                    primaryColor: '#2d5a3d',
+                    primaryTextColor: '#e8e8e8',
+                    primaryBorderColor: '#42d392',
+                    lineColor: '#42d392',
+                    secondaryColor: '#3a3a3a',
+                    tertiaryColor: '#2d2d30',
+                    background: '#252526',
+                    mainBkg: '#2d5a3d',
+                    textColor: '#e8e8e8',
+                    // 时序图
+                    actorBkg: '#2d5a3d',
+                    actorBorder: '#42d392',
+                    actorTextColor: '#e8e8e8',
+                    actorLineColor: '#42d392',
+                    signalColor: '#42d392',
+                    signalTextColor: '#e8e8e8',
+                    labelBoxBkgColor: '#3a3a3a',
+                    labelBoxBorderColor: '#42d392',
+                    labelTextColor: '#e8e8e8',
+                    loopTextColor: '#e8e8e8',
+                    noteBkgColor: '#4a4a2a',
+                    noteTextColor: '#e8e8e8',
+                    noteBorderColor: '#6a6a4a',
+                    activationBkgColor: '#3d6a4d',
+                    activationBorderColor: '#42d392'
+                } : {
+                    // 亮色主题
+                    primaryColor: '#e8f5e9',
+                    primaryTextColor: '#1a1a1a',
+                    primaryBorderColor: '#42b983',
+                    lineColor: '#42b983',
+                    secondaryColor: '#f5f7f9',
+                    tertiaryColor: '#fff',
+                    textColor: '#333',
+                    // 时序图
+                    actorBkg: '#e8f5e9',
+                    actorBorder: '#42b983',
+                    actorTextColor: '#1a1a1a',
+                    actorLineColor: '#42b983',
+                    signalColor: '#42b983',
+                    signalTextColor: '#333',
+                    labelBoxBkgColor: '#f5f7f9',
+                    labelBoxBorderColor: '#42b983',
+                    labelTextColor: '#333',
+                    loopTextColor: '#333',
+                    noteBkgColor: '#fff8dc',
+                    noteTextColor: '#333',
+                    noteBorderColor: '#e6d9a8',
+                    activationBkgColor: '#c8e6c9',
+                    activationBorderColor: '#42b983'
+                }
+            };
+        }
+        
+        // 初始化
+        mermaid.initialize(getMermaidConfig());
+        
+        // 监听主题变化
+        if (window.matchMedia) {
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function() {
+                mermaid.initialize(getMermaidConfig());
+                // 重新渲染
+                document.querySelectorAll('.mermaid[data-processed]').forEach(function(el) {
+                    var source = el.getAttribute('data-source');
+                    if (source) {
+                        el.removeAttribute('data-processed');
+                        el.innerHTML = source;
+                    }
+                });
+                setTimeout(renderMermaid, 50);
+            });
+        }
+        
+        function renderMermaid() {
+            var els = document.querySelectorAll('.mermaid:not([data-processed])');
+            if (els.length === 0) return;
+            
+            els.forEach(function(el, idx) {
+                var code = el.textContent || el.innerText;
+                if (!code.trim()) return;
+                
+                // 保存原始代码
+                el.setAttribute('data-source', code.trim());
+                
+                var id = 'mermaid-' + Date.now() + '-' + idx;
+                
+                try {
+                    // Mermaid 9.x 使用回调方式
+                    mermaid.render(id, code.trim(), function(svgCode) {
+                        el.innerHTML = svgCode;
+                        el.setAttribute('data-processed', 'true');
+                    });
+                } catch (e) {
+                    console.warn('Mermaid render error:', e);
+                    el.innerHTML = '<pre style="color: #e06c75; padding: 1em;">Mermaid 渲染错误: ' + e.message + '</pre>';
+                }
+            });
+        }
+        
+        window.renderMermaid = renderMermaid;
+        
+        window.$docsify = window.$docsify || {};
+        window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+            hook.beforeEach(function(content) {
+                return content.replace(/```mermaid([\s\S]*?)```/g, function(match, code) {
+                    return '<div class="mermaid">' + code.trim() + '</div>';
+                });
+            });
+            hook.doneEach(function() {
+                mermaid.initialize(getMermaidConfig());
+                setTimeout(renderMermaid, 100);
+            });
+        });
+    })();
+    </script>
+    <style>
+    /* Mermaid 图表容器样式 */
+    .mermaid {
+        text-align: center;
+        margin: 1.5em 0;
+        padding: 1.5em 1em;
+        background: var(--bg-color-secondary);
+        border-radius: 8px;
+        overflow-x: auto;
+        border: 1px solid var(--border-color);
+    }
+    .mermaid svg {
+        max-width: 100%;
+        height: auto;
+    }
+    /* 深色模式 */
+    @media (prefers-color-scheme: dark) {
+        .mermaid {
+            background: #252526;
+            border-color: #404040;
+        }
+    }
+    /* 移动端适配 */
+    @media screen and (max-width: 768px) {
+        .mermaid {
+            padding: 1em 0.5em;
+            font-size: 12px;
+        }
+    }
+    </style>
 
     <!-- 回到顶部功能 -->
     <script>

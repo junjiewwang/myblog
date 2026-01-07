@@ -431,21 +431,21 @@ private TaskResult waitForStopped(long timeout) {
 stateDiagram-v2
     [*] --> STOPPED
     
-    STOPPED --> STARTING: tryStart()
+    STOPPED --> STARTING: tryStart
     
-    STARTING --> RUNNING: bootstrap.start() 成功
-    STARTING --> STOPPED: 启动失败 / 看门狗超时
+    STARTING --> RUNNING: start ok
+    STARTING --> STOPPED: fail/watchdog
     
-    RUNNING --> IDLE: markIdle() 空闲检测
-    IDLE --> RUNNING: markActive() 有活动
+    RUNNING --> IDLE: markIdle
+    IDLE --> RUNNING: markActive
     
-    RUNNING --> STOPPING: stop()
-    IDLE --> STOPPING: stop()
+    RUNNING --> STOPPING: stop
+    IDLE --> STOPPING: stop
     
-    STOPPING --> STOPPED: stop() 完成
+    STOPPING --> STOPPED: done
     
-    RUNNING --> STOPPED: 外部退出 syncStoppedFromExternalSignal()
-    IDLE --> STOPPED: 外部退出 syncStoppedFromExternalSignal()
+    RUNNING --> STOPPED: externalExit
+    IDLE --> STOPPED: externalExit
 ```
 
 ### 5.2 状态转换触发条件
