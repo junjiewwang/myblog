@@ -20,6 +20,7 @@
   * [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
   * [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md)
   * [OTel Arthas Tunnel 分布式架构升级](/observability/otel-arthas-tunnel-distributed-upgrade.md)
+  * [Arthas SpyAPI 初始化机制分析](/observability/otel-arthas-spyapi-initialization.md)
   * [OTel Java 二次开发经验](/observability/otel-java-development.md)
   * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
 
