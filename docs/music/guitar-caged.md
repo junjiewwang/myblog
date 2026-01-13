@@ -82,7 +82,3 @@
 | 民谣 | G - D - Em - C | 《成都》《南山南》 |
 | 摇滚 | E - A - B - E | 经典摇滚 |
 | 卡农 | C - G - Am - Em - F - C - F - G | 卡农进行 |
-
----
-
-[← 返回吉他学习笔记](/music/guitar-learning.md)

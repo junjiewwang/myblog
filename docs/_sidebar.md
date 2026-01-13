@@ -50,5 +50,6 @@
   * [音级与功能和声](/music/guitar-scale-degrees.md)
   * [自然大调音阶](/music/guitar-major-scales.md)
   * [五度圈](/music/guitar-circle-of-fifths.md)
+  * [和弦转位与指板](/music/guitar-chord-inversions.md)
   * [调式与组成音](/music/guitar-modes.md)
   * [🎹 五线谱快速记忆](/music/piano-staff-memory.md)

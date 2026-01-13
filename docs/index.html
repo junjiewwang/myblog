@@ -625,13 +625,25 @@
             border: 1px solid var(--border-color);
             margin: 1.2em 0;
             padding: 16px !important;
+
+            /* 保证“指板/框线图”不被主题强制折行 */
+            white-space: pre;
             overflow-x: auto;
         }
 
         .markdown-section pre code {
             background: transparent !important;
             color: var(--code-theme-text) !important;
-            font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+
+            /* 代码块对齐稳定性：禁用连字/不换行/更稳的等宽字体回退 */
+            font-family: 'SF Mono', Menlo, Monaco, 'JetBrains Mono', 'Fira Code', Consolas, 'Liberation Mono', 'Courier New', monospace;
+            font-variant-ligatures: none;
+            font-feature-settings: "liga" 0, "calt" 0;
+            white-space: pre;
+            word-break: normal;
+            overflow-wrap: normal;
+            tab-size: 4;
+
             font-size: 14px;
             line-height: 1.6;
             padding: 0 !important;
