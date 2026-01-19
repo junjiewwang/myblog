@@ -175,6 +175,49 @@ D Dorian: D-E-F-G-A-B-C
 | Mixolydian | 属七 | I7, ♭VII, IVmaj7 |
 | Aeolian | 小三 | Im7, ♭VI, ♭VII |
 
+**2.1 调式顺阶和弦（七声音阶三和弦）**
+
+> 说明：
+> - 大小写表示和弦性质（大写=大三和弦，小写=小三和弦）
+> - `°`=减三和弦（本表未包含增三和弦）
+> - `♭/#` 表示相对 Ionian（大调）的音级变化
+
+|| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
+||:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|| Ionian | I | ii | iii | IV | V | vi | vii° |
+|| Dorian | i | ii | ♭III | IV | v | vi° | ♭VII |
+|| Phrygian | i | ♭II | ♭III | iv | v° | ♭VI | ♭vii |
+|| Lydian | I | II | iii | #iv° | V | vi | vii |
+|| Mixolydian | I | ii | iii° | IV | v | vi | ♭VII |
+|| Aeolian | i | ii° | ♭III | iv | v | ♭VI | ♭VII |
+|| Locrian | i° | ♭II | ♭iii | iv | ♭V | ♭VI | ♭vii |
+
+**2.2 调式顺阶和弦（七声音阶七和弦）**
+
+> 说明：maj7=大七和弦，7=属七和弦，m7=小七和弦，ø7=半减七和弦。
+
+|| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
+||:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|| Ionian | Imaj7 | iim7 | iiim7 | IVmaj7 | V7 | vim7 | viiø7 |
+|| Dorian | im7 | iim7 | ♭IIImaj7 | IV7 | vm7 | viø7 | ♭VIImaj7 |
+|| Phrygian | im7 | ♭IImaj7 | ♭III7 | ivm7 | vø7 | ♭VImaj7 | ♭VIIm7 |
+|| Lydian | Imaj7 | II7 | iiim7 | #ivø7 | Vmaj7 | vim7 | viim7 |
+|| Mixolydian | I7 | iim7 | iiiø7 | IVmaj7 | vm7 | vim7 | ♭VIImaj7 |
+|| Aeolian | im7 | iiø7 | ♭IIImaj7 | ivm7 | vm7 | ♭VImaj7 | ♭VII7 |
+|| Locrian | iø7 | ♭IImaj7 | ♭III7 | ivm7 | ♭Vmaj7 | ♭VI7 | ♭VIIm7 |
+
+**2.3 以 C 为根音的顺阶七和弦示例**
+
+> 说明：以下每行都是“以 C 为根音”的调式，其顺阶七和弦对应的实际和弦名称。
+
+- **C Ionian**: Cmaj7 - Dm7 - Em7 - Fmaj7 - G7 - Am7 - Bø7
+- **C Dorian**: Cm7 - Dm7 - E♭maj7 - F7 - Gm7 - Aø7 - B♭maj7
+- **C Phrygian**: Cm7 - D♭maj7 - E♭7 - Fm7 - Gø7 - A♭maj7 - B♭m7
+- **C Lydian**: Cmaj7 - D7 - Em7 - F#ø7 - Gmaj7 - Am7 - Bm7
+- **C Mixolydian**: C7 - Dm7 - Eø7 - Fmaj7 - Gm7 - Am7 - B♭maj7
+- **C Aeolian**: Cm7 - Dø7 - E♭maj7 - Fm7 - Gm7 - A♭maj7 - B♭7
+- **C Locrian**: Cø7 - D♭maj7 - E♭7 - Fm7 - G♭maj7 - A♭7 - B♭m7
+
 **3. 调式选择指南**
 
 | 和弦进行 | 推荐调式 | 风格 |
