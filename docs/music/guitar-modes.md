@@ -111,13 +111,17 @@ Ionian → Lydian
 **核心规律**：在五度圈上，相邻的调共享 6 个音，只差 1 个音
 
 ```
-五度圈顺时针方向 (升号增加):
+五度圈顺时针方向（升号增加 / 五度上行）
+（以 C 大调音阶的 7 个音为例：F-C-G-D-A-E-B）
 
-  F     C     G     D     A     E     B
-  ↓     ↓     ↓     ↓     ↓     ↓     ↓
-Lydian Ionian Mixo  Dorian Aeolian Phrygian Locrian
- (+#4)  (基准) (-b7)  (-b3-b7) (-b3-b6-b7) ...
+  F         C         G          D           A            E             B
+  ↓         ↓         ↓          ↓           ↓            ↓             ↓
+Lydian    Ionian   Mixolydian   Dorian     Aeolian      Phrygian      Locrian
+(#4)      (基准)     (♭7)      (♭3,♭7)   (♭3,♭6,♭7)  (♭2,♭3,♭6,♭7)  (♭2,♭3,♭5,♭6,♭7)
 ```
+
+> 如何理解 `F → Lydian (+#4)`：这里默认固定同一套音（以 **C 大调音阶**为例），把它的 7 个音按五度顺序排成 `F-C-G-D-A-E-B`；把每个音当作主音，就分别得到 `F Lydian / C Ionian / G Mixolydian / D Dorian / A Aeolian / E Phrygian / B Locrian`。
+> 其中 `F Lydian` 使用的是 `F-G-A-B-C-D-E`，相对 `F 大调(F Ionian: F-G-A-B♭-C-D-E)`，第 4 级从 `B♭` 变为 `B`，因此记作 **`#4`**。
 
 **调式明暗排序** (从亮到暗)：
 
@@ -159,10 +163,12 @@ Lydian > Ionian > Mixolydian > Dorian > Aeolian > Phrygian > Locrian
 
 ```
 Dorian = 大调的第 2 级
-D 是某大调的第 2 级 → 往逆时针走 1 格 → C 大调
+D 是某大调的第 2 级 → 往逆时针走 2 格（D→G→C）→ C 大调
 所以 D Dorian = C 大调音阶从 D 开始
 D Dorian: D-E-F-G-A-B-C
 ```
+
+> 关键规则：五度圈“顺/逆时针走 N 格”描述的是调号（升/降号数量）变化，**不等于**调式的“第 N 级”；找调式组成音应先按“目标根音是母大调的第 N 级”反推母大调，再从该根音开始排列。
 
 **2. 调式对应和弦**
 
@@ -182,29 +188,29 @@ D Dorian: D-E-F-G-A-B-C
 > - `°`=减三和弦（本表未包含增三和弦）
 > - `♭/#` 表示相对 Ionian（大调）的音级变化
 
-|| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
-||:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|| Ionian | I | ii | iii | IV | V | vi | vii° |
-|| Dorian | i | ii | ♭III | IV | v | vi° | ♭VII |
-|| Phrygian | i | ♭II | ♭III | iv | v° | ♭VI | ♭vii |
-|| Lydian | I | II | iii | #iv° | V | vi | vii |
-|| Mixolydian | I | ii | iii° | IV | v | vi | ♭VII |
-|| Aeolian | i | ii° | ♭III | iv | v | ♭VI | ♭VII |
-|| Locrian | i° | ♭II | ♭iii | iv | ♭V | ♭VI | ♭vii |
+| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Ionian | I | ii | iii | IV | V | vi | vii° |
+| Dorian | i | ii | ♭III | IV | v | vi° | ♭VII |
+| Phrygian | i | ♭II | ♭III | iv | v° | ♭VI | ♭vii |
+| Lydian | I | II | iii | #iv° | V | vi | vii |
+| Mixolydian | I | ii | iii° | IV | v | vi | ♭VII |
+| Aeolian | i | ii° | ♭III | iv | v | ♭VI | ♭VII |
+| Locrian | i° | ♭II | ♭iii | iv | ♭V | ♭VI | ♭vii |
 
 **2.2 调式顺阶和弦（七声音阶七和弦）**
 
 > 说明：maj7=大七和弦，7=属七和弦，m7=小七和弦，ø7=半减七和弦。
 
-|| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
-||:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-|| Ionian | Imaj7 | iim7 | iiim7 | IVmaj7 | V7 | vim7 | viiø7 |
-|| Dorian | im7 | iim7 | ♭IIImaj7 | IV7 | vm7 | viø7 | ♭VIImaj7 |
-|| Phrygian | im7 | ♭IImaj7 | ♭III7 | ivm7 | vø7 | ♭VImaj7 | ♭VIIm7 |
-|| Lydian | Imaj7 | II7 | iiim7 | #ivø7 | Vmaj7 | vim7 | viim7 |
-|| Mixolydian | I7 | iim7 | iiiø7 | IVmaj7 | vm7 | vim7 | ♭VIImaj7 |
-|| Aeolian | im7 | iiø7 | ♭IIImaj7 | ivm7 | vm7 | ♭VImaj7 | ♭VII7 |
-|| Locrian | iø7 | ♭IImaj7 | ♭III7 | ivm7 | ♭Vmaj7 | ♭VI7 | ♭VIIm7 |
+| 调式 | Ⅰ | Ⅱ | Ⅲ | Ⅳ | Ⅴ | Ⅵ | Ⅶ |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Ionian | Imaj7 | iim7 | iiim7 | IVmaj7 | V7 | vim7 | viiø7 |
+| Dorian | im7 | iim7 | ♭IIImaj7 | IV7 | vm7 | viø7 | ♭VIImaj7 |
+| Phrygian | im7 | ♭IImaj7 | ♭III7 | ivm7 | vø7 | ♭VImaj7 | ♭VIIm7 |
+| Lydian | Imaj7 | II7 | iiim7 | #ivø7 | Vmaj7 | vim7 | viim7 |
+| Mixolydian | I7 | iim7 | iiiø7 | IVmaj7 | vm7 | vim7 | ♭VIImaj7 |
+| Aeolian | im7 | iiø7 | ♭IIImaj7 | ivm7 | vm7 | ♭VImaj7 | ♭VII7 |
+| Locrian | iø7 | ♭IImaj7 | ♭IIIm7 | ivm7 | ♭Vmaj7 | ♭VI7 | ♭VIIm7 |
 
 **2.3 以 C 为根音的顺阶七和弦示例**
 
@@ -216,7 +222,7 @@ D Dorian: D-E-F-G-A-B-C
 - **C Lydian**: Cmaj7 - D7 - Em7 - F#ø7 - Gmaj7 - Am7 - Bm7
 - **C Mixolydian**: C7 - Dm7 - Eø7 - Fmaj7 - Gm7 - Am7 - B♭maj7
 - **C Aeolian**: Cm7 - Dø7 - E♭maj7 - Fm7 - Gm7 - A♭maj7 - B♭7
-- **C Locrian**: Cø7 - D♭maj7 - E♭7 - Fm7 - G♭maj7 - A♭7 - B♭m7
+- **C Locrian**: Cø7 - D♭maj7 - E♭m7 - Fm7 - G♭maj7 - A♭7 - B♭m7
 
 **3. 调式选择指南**
 
