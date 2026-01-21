@@ -52,4 +52,5 @@
   * [五度圈](/music/guitar-circle-of-fifths.md)
   * [和弦转位与指板](/music/guitar-chord-inversions.md)
   * [调式与组成音](/music/guitar-modes.md)
+  * [Drop2 和弦与转位](/music/guitar-drop2.md)
   * [🎹 五线谱快速记忆](/music/piano-staff-memory.md)
