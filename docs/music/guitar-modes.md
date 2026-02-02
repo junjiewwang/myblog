@@ -120,7 +120,12 @@ Lydian    Ionian   Mixolydian   Dorian     Aeolian      Phrygian      Locrian
 (#4)      (基准)     (♭7)      (♭3,♭7)   (♭3,♭6,♭7)  (♭2,♭3,♭6,♭7)  (♭2,♭3,♭5,♭6,♭7)
 ```
 
-> 如何理解 `F → Lydian (+#4)`：这里默认固定同一套音（以 **C 大调音阶**为例），把它的 7 个音按五度顺序排成 `F-C-G-D-A-E-B`；把每个音当作主音，就分别得到 `F Lydian / C Ionian / G Mixolydian / D Dorian / A Aeolian / E Phrygian / B Locrian`。
+> 如何理解 `F → Lydian (+#4)`：这里默认固定同一套音（以 **C 大调音阶**为例），把它的 7 个音按五度顺序排成 `F-C-G-D-A-E-B`；把每个音当作主音，就分别得到
+
+ ```
+ F Lydian / C Ionian / G Mixolydian / D Dorian / A Aeolian / E Phrygian / B Locrian
+ ```
+
 > 其中 `F Lydian` 使用的是 `F-G-A-B-C-D-E`，相对 `F 大调(F Ionian: F-G-A-B♭-C-D-E)`，第 4 级从 `B♭` 变为 `B`，因此记作 **`#4`**。
 
 **调式明暗排序** (从亮到暗)：
