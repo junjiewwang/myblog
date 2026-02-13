@@ -15,6 +15,7 @@
   * [Swagger-UI 整合](/springboot/swagger-ui.md)
 
 * **📡 可观测性**
+  * [服务拓扑图实现方案设计](/observability/service-topology-design.md)
   * [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
   * [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
   * [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)

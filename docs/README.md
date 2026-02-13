@@ -24,6 +24,7 @@
 
 | 文章 | 简介 |
 |------|------|
+| [服务拓扑图实现方案设计](/observability/service-topology-design.md) | APM 服务拓扑图的 peer.service 配对方案，基于 Redis 的分层架构设计 |
 | [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md) | 分布式控制面的长连接管理、任务调度与状态上报架构设计 |
 | [Arthas Tunnel 分布式架构升级](/observability/otel-arthas-tunnel-distributed-upgrade.md) | 从故障治理到竞争力构建的分布式系统稳定性升级经验 |
 
@@ -52,6 +53,7 @@
 
 ### 📡 可观测性 & OpenTelemetry
 
+- [服务拓扑图实现方案设计](/observability/service-topology-design.md)
 - [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
 - [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
 - [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
