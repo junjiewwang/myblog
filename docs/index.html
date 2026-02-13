@@ -1844,6 +1844,60 @@
     })();
     </script>
 
+    <!-- 移动端侧边栏交互重构：精准控制折叠与关闭 -->
+    <script>
+    (function() {
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        document.addEventListener('click', function(e) {
+            if (!isMobile()) return;
+
+            var sidebarNav = document.querySelector('.sidebar-nav');
+            if (!sidebarNav || !sidebarNav.contains(e.target)) return;
+
+            // 1. 寻找点击的链接和所在的列表项
+            var link = e.target.closest('a');
+            var listItem = e.target.closest('li');
+            
+            // 2. 判断是否为文章跳转链接 (.md 或锚点)
+            var isArticleLink = link && link.getAttribute('href') && 
+                               (link.getAttribute('href').indexOf('.md') !== -1 || link.classList.contains('section-link'));
+
+            // 3. 处理逻辑
+            if (!isArticleLink) {
+                // 如果点击的不是文章链接（即点击的是折叠标题、箭头、或分组文字）
+                
+                // A. 拦截冒泡，防止 Docsify 关闭侧边栏（消除抖动根本原因）
+                e.stopPropagation();
+                
+                // B. 手动触发折叠逻辑（因为插件收不到被拦截的事件了）
+                if (listItem && (listItem.classList.contains('folder') || listItem.querySelector('ul'))) {
+                    // 切换插件所需的类名
+                    var isOpen = listItem.classList.contains('open');
+                    if (isOpen) {
+                        listItem.classList.remove('open');
+                        listItem.classList.add('collapse');
+                    } else {
+                        // 手风琴效果：可选，关闭同级其他项
+                        var siblings = listItem.parentNode.children;
+                        for (var i = 0; i < siblings.length; i++) {
+                            if (siblings[i] !== listItem) {
+                                siblings[i].classList.remove('open');
+                                siblings[i].classList.add('collapse');
+                            }
+                        }
+                        listItem.classList.add('open');
+                        listItem.classList.remove('collapse');
+                    }
+                }
+            }
+            // 如果是文章链接，则不处理，让其自然冒泡触发 Docsify 的跳转并收起侧边栏
+        }, true); // 捕获阶段拦截
+    })();
+    </script>
+
 
 </body>
 
