@@ -476,6 +476,30 @@
             font-weight: 500;
         }
 
+        /* 三级子分类标题 — 轻量分组标签 */
+        .sidebar-nav > ul > li > ul > li > p,
+        .sidebar-nav > ul > li > ul > li > strong,
+        .sidebar-nav > ul > li > ul > li > p > strong {
+            font-size: 12px !important;
+            font-weight: 500 !important;
+            color: var(--text-color-tertiary) !important;
+            letter-spacing: 0.5px;
+            margin: 12px 0 2px 0;
+            padding: 0 0 0 4px;
+            display: block;
+        }
+
+        /* 去掉三级子分类项的底部分隔线 */
+        .sidebar-nav > ul > li > ul > li {
+            border-bottom: none !important;
+        }
+
+        /* 三级子分类下的文章链接 — 缩进更紧凑 */
+        .sidebar-nav > ul > li > ul > li > ul > li > a {
+            font-size: 12.5px;
+            padding: 4px 0 4px 8px;
+        }
+
         /* ==================== 搜索框 ==================== */
         .sidebar > .search {
             margin: 0 !important;

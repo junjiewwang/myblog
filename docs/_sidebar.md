@@ -45,16 +45,21 @@
   * [LeetCode 树类题解](/leetcode/tree/tree.md)
 
 * **🎵 音乐**
-  * [🎸 吉他学习笔记](/music/guitar-learning.md)
-  * [指板音名图](/music/guitar-fretboard.md)
-  * [CAGED 和弦系统](/music/guitar-caged.md)
-  * [音级与功能和声](/music/guitar-scale-degrees.md)
-  * [自然大调音阶](/music/guitar-major-scales.md)
-  * [五度圈](/music/guitar-circle-of-fifths.md)
-  * [和弦转位与指板](/music/guitar-chord-inversions.md)
-  * [调式与组成音](/music/guitar-modes.md)
-  * [Drop2 和弦与转位](/music/guitar-drop2.md)
-  * [3NPS 音阶系统](/music/guitar-3nps.md)
-  * [🎹 五线谱快速记忆](/music/piano-staff-memory.md)
+  * **🎸 学习路线**
+    * [吉他学习笔记](/music/guitar-learning.md)
+    * [进阶学习计划](/music/guitar-advanced-plan.md)
+  * **🎼 乐理基础**
+    * [指板音名图](/music/guitar-fretboard.md)
+    * [音级与功能和声](/music/guitar-scale-degrees.md)
+    * [自然大调音阶](/music/guitar-major-scales.md)
+    * [五度圈](/music/guitar-circle-of-fifths.md)
+    * [调式与组成音](/music/guitar-modes.md)
+  * **🎯 和弦与音阶系统**
+    * [CAGED 和弦系统](/music/guitar-caged.md)
+    * [和弦转位与指板](/music/guitar-chord-inversions.md)
+    * [Drop2 和弦与转位](/music/guitar-drop2.md)
+    * [3NPS 音阶系统](/music/guitar-3nps.md)
+  * **🎹 其他**
+    * [五线谱快速记忆](/music/piano-staff-memory.md)
 
 * [关于我](/about/resume.md)
