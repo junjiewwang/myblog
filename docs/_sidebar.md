@@ -29,6 +29,7 @@
   * [Go 语言学习指南](/programmingLanguage/golang_study/GolangStudy.md)
 
 * **🔧 DevOps & 运维**
+  * [Lima Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)
   * [Docker GUI (Linux)](/linux/docker_x11_gui.md)
   * [Docker GUI (Mac)](/mac/docker_gui.md)
   * [Nginx 配置集合](/nginx/nginx_config.md)
