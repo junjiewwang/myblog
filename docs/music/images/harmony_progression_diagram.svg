@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 720">
+  <title>大调和声进行规律流程图</title>
+  
+  <defs>
+    <!-- 箭头标记 -->
+    <marker id="arrow-gray" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#94a3b8" />
+    </marker>
+    <marker id="arrow-blue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#3b82f6" />
+    </marker>
+    <marker id="arrow-green" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#10b981" />
+    </marker>
+    <marker id="arrow-orange" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#f59e0b" />
+    </marker>
+    <marker id="arrow-purple" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#8b5cf6" />
+    </marker>
+    
+    <!-- 阴影滤镜 -->
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.1"/>
+    </filter>
+    
+    <!-- 渐变 -->
+    <linearGradient id="grad-t" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#eff6ff"/>
+      <stop offset="100%" stop-color="#dbeafe"/>
+    </linearGradient>
+    <linearGradient id="grad-s" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ecfdf5"/>
+      <stop offset="100%" stop-color="#d1fae5"/>
+    </linearGradient>
+    <linearGradient id="grad-d" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#fffbeb"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+
+  <!-- 背景 -->
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  
+  <!-- 标题 -->
+  <text x="480" y="50" text-anchor="middle" font-family="system-ui, sans-serif" font-size="24" font-weight="700" fill="#1e293b">大调和声进行规律与功能体系</text>
+  <text x="480" y="80" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" fill="#64748b">T-S-D-T 核心循环 | 四种终止式 | 经典进行模式</text>
+
+  <!-- ========================================== -->
+  <!-- 核心功能循环区 (三角形布局) -->
+  <!-- ========================================== -->
+  
+  <!-- 1. 主功能组 (Tonic) - 顶部 -->
+  <g transform="translate(360, 120)">
+    <rect x="0" y="0" width="240" height="140" rx="12" fill="url(#grad-t)" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+    <text x="120" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#1e40af">主功能组 (Tonic)</text>
+    <text x="120" y="50" text-anchor="middle" font-size="12" fill="#3b82f6">稳定 / 归属 / 家</text>
+    
+    <!-- 和弦节点 -->
+    <circle cx="120" cy="90" r="30" fill="#ffffff" stroke="#3b82f6" stroke-width="2"/>
+    <text x="120" y="96" text-anchor="middle" font-family="'SF Mono', monospace" font-size="18" font-weight="700" fill="#1e40af">I</text>
+    
+    <circle cx="60" cy="90" r="20" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="60" y="95" text-anchor="middle" font-family="'SF Mono', monospace" font-size="14" fill="#60a5fa">vi</text>
+    
+    <circle cx="180" cy="90" r="20" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5"/>
+    <text x="180" y="95" text-anchor="middle" font-family="'SF Mono', monospace" font-size="14" fill="#60a5fa">iii</text>
+  </g>
+
+  <!-- 2. 下属功能组 (Subdominant) - 左下 -->
+  <g transform="translate(120, 380)">
+    <rect x="0" y="0" width="220" height="130" rx="12" fill="url(#grad-s)" stroke="#10b981" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#047857">下属功能组 (S)</text>
+    <text x="110" y="50" text-anchor="middle" font-size="12" fill="#10b981">过渡 / 离心 / 桥梁</text>
+    
+    <!-- 和弦节点 -->
+    <circle cx="80" cy="90" r="30" fill="#ffffff" stroke="#10b981" stroke-width="2"/>
+    <text x="80" y="96" text-anchor="middle" font-family="'SF Mono', monospace" font-size="18" font-weight="700" fill="#047857">IV</text>
+    
+    <circle cx="150" cy="90" r="20" fill="#ffffff" stroke="#6ee7b7" stroke-width="1.5"/>
+    <text x="150" y="95" text-anchor="middle" font-family="'SF Mono', monospace" font-size="14" fill="#34d399">ii</text>
+  </g>
+
+  <!-- 3. 属功能组 (Dominant) - 右下 -->
+  <g transform="translate(620, 380)">
+    <rect x="0" y="0" width="220" height="130" rx="12" fill="url(#grad-d)" stroke="#f59e0b" stroke-width="2" filter="url(#shadow)"/>
+    <text x="110" y="30" text-anchor="middle" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#b45309">属功能组 (D)</text>
+    <text x="110" y="50" text-anchor="middle" font-size="12" fill="#f59e0b">紧张 / 期待 / 导向</text>
+    
+    <!-- 和弦节点 -->
+    <circle cx="140" cy="90" r="30" fill="#ffffff" stroke="#f59e0b" stroke-width="2"/>
+    <text x="140" y="96" text-anchor="middle" font-family="'SF Mono', monospace" font-size="18" font-weight="700" fill="#b45309">V</text>
+    
+    <circle cx="70" cy="90" r="20" fill="#ffffff" stroke="#fcd34d" stroke-width="1.5"/>
+    <text x="70" y="95" text-anchor="middle" font-family="'SF Mono', monospace" font-size="14" fill="#fbbf24">vii°</text>
+  </g>
+
+  <!-- ========================================== -->
+  <!-- 核心循环箭头与终止式 -->
+  <!-- ========================================== -->
+
+  <!-- T -> S (离开家) -->
+  <path d="M 360 200 Q 230 200 230 370" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow-gray)"/>
+  <text x="260" y="280" font-size="12" fill="#64748b" font-weight="600">展开/过渡</text>
+
+  <!-- S -> D (积蓄张力) -->
+  <path d="M 340 445 L 610 445" fill="none" stroke="#94a3b8" stroke-width="3" marker-end="url(#arrow-gray)"/>
+  <text x="450" y="435" font-size="12" fill="#64748b" font-weight="600">半终止 (→V)</text>
+
+  <!-- D -> T (正格终止 - 强解决) -->
+  <path d="M 730 370 Q 730 200 610 200" fill="none" stroke="#f59e0b" stroke-width="4" marker-end="url(#arrow-orange)"/>
+  <rect x="680" y="260" width="80" height="24" rx="4" fill="#fffbeb" stroke="#f59e0b"/>
+  <text x="720" y="276" text-anchor="middle" font-size="12" fill="#b45309" font-weight="700">正格终止</text>
+
+  <!-- S -> T (变格终止 - 柔和解决) -->
+  <path d="M 200 370 Q 200 230 350 230" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-green)"/>
+  <rect x="180" y="280" width="80" height="24" rx="4" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="220" y="296" text-anchor="middle" font-size="12" fill="#047857" font-weight="700">变格终止</text>
+
+  <!-- D -> vi (假终止 - 意外) -->
+  <path d="M 760 380 Q 800 200 610 160" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arrow-purple)"/>
+  <rect x="780" y="220" width="60" height="24" rx="4" fill="#f5f3ff" stroke="#8b5cf6"/>
+  <text x="810" y="236" text-anchor="middle" font-size="12" fill="#5b21b6" font-weight="700">假终止</text>
+
+  <!-- ========================================== -->
+  <!-- 经典进行模式区 -->
+  <!-- ========================================== -->
+  
+  <line x1="50" y1="540" x2="910" y2="540" stroke="#e2e8f0" stroke-width="1"/>
+  <text x="50" y="570" font-family="system-ui, sans-serif" font-size="16" font-weight="700" fill="#334155">经典和声进行模式</text>
+
+  <!-- 模式 1: ii-V-I (爵士/流行核心) -->
+  <g transform="translate(50, 600)">
+    <text x="0" y="-10" font-size="13" font-weight="600" fill="#475569">1. ii-V-I 进行 (五度下行)</text>
+    
+    <rect x="0" y="0" width="50" height="30" rx="4" fill="#ecfdf5" stroke="#10b981"/>
+    <text x="25" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#047857">ii</text>
+    
+    <line x1="55" y1="15" x2="85" y2="15" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+    
+    <rect x="90" y="0" width="50" height="30" rx="4" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="115" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#b45309">V</text>
+    
+    <line x1="145" y1="15" x2="175" y2="15" stroke="#f59e0b" stroke-width="1.5" marker-end="url(#arrow-orange)"/>
+    
+    <rect x="180" y="0" width="50" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6"/>
+    <text x="205" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#1e40af">I</text>
+  </g>
+
+  <!-- 模式 2: I-vi-IV-V (流行循环) -->
+  <g transform="translate(320, 600)">
+    <text x="0" y="-10" font-size="13" font-weight="600" fill="#475569">2. 1-6-4-5 循环</text>
+    
+    <rect x="0" y="0" width="40" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6"/>
+    <text x="20" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#1e40af">I</text>
+    
+    <line x1="45" y1="15" x2="65" y2="15" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+    
+    <rect x="70" y="0" width="40" height="30" rx="4" fill="#eff6ff" stroke="#3b82f6"/>
+    <text x="90" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#1e40af">vi</text>
+    
+    <line x1="115" y1="15" x2="135" y2="15" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+    
+    <rect x="140" y="0" width="40" height="30" rx="4" fill="#ecfdf5" stroke="#10b981"/>
+    <text x="160" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#047857">IV</text>
+    
+    <line x1="185" y1="15" x2="205" y2="15" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arrow-gray)"/>
+    
+    <rect x="210" y="0" width="40" height="30" rx="4" fill="#fffbeb" stroke="#f59e0b"/>
+    <text x="230" y="20" text-anchor="middle" font-family="monospace" font-weight="700" fill="#b45309">V</text>
+  </g>
+
+  <!-- 模式 3: 卡农进行 -->
+  <g transform="translate(600, 600)">
+    <text x="0" y="-10" font-size="13" font-weight="600" fill="#475569">3. 卡农进行 (Canon in D)</text>
+    
+    <!-- 第一行 -->
+    <g>
+        <rect x="0" y="0" width="30" height="24" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+        <text x="15" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#1e40af">I</text>
+        <line x1="32" y1="12" x2="48" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="50" y="0" width="30" height="24" rx="3" fill="#fffbeb" stroke="#f59e0b"/>
+        <text x="65" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#b45309">V</text>
+        <line x1="82" y1="12" x2="98" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="100" y="0" width="30" height="24" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+        <text x="115" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#1e40af">vi</text>
+        <line x1="132" y1="12" x2="148" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="150" y="0" width="30" height="24" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+        <text x="165" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#1e40af">iii</text>
+    </g>
+    
+    <!-- 连接线 -->
+    <path d="M 182 12 L 190 12 Q 195 12 195 20 L 195 25 Q 195 33 190 33 L 182 33" fill="none" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+
+    <!-- 第二行 -->
+    <g transform="translate(0, 35)">
+        <rect x="150" y="0" width="30" height="24" rx="3" fill="#ecfdf5" stroke="#10b981"/>
+        <text x="165" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#047857">IV</text>
+        <line x1="148" y1="12" x2="132" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="100" y="0" width="30" height="24" rx="3" fill="#eff6ff" stroke="#3b82f6"/>
+        <text x="115" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#1e40af">I</text>
+        <line x1="98" y1="12" x2="82" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="50" y="0" width="30" height="24" rx="3" fill="#ecfdf5" stroke="#10b981"/>
+        <text x="65" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#047857">ii</text>
+        <line x1="48" y1="12" x2="32" y2="12" stroke="#94a3b8" stroke-width="1" marker-end="url(#arrow-gray)"/>
+        
+        <rect x="0" y="0" width="30" height="24" rx="3" fill="#fffbeb" stroke="#f59e0b"/>
+        <text x="15" y="16" text-anchor="middle" font-size="11" font-family="monospace" fill="#b45309">V</text>
+    </g>
+  </g>
+
+  <!-- 图例 -->
+  <g transform="translate(800, 50)">
+    <rect x="0" y="0" width="120" height="80" rx="4" fill="#f8fafc" stroke="#e2e8f0"/>
+    <text x="60" y="20" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b">图例</text>
+    
+    <circle cx="20" cy="35" r="4" fill="#3b82f6"/>
+    <text x="35" y="38" font-size="10" fill="#475569">主功能 (T)</text>
+    
+    <circle cx="20" cy="50" r="4" fill="#10b981"/>
+    <text x="35" y="53" font-size="10" fill="#475569">下属功能 (S)</text>
+    
+    <circle cx="20" cy="65" r="4" fill="#f59e0b"/>
+    <text x="35" y="68" font-size="10" fill="#475569">属功能 (D)</text>
+  </g>
+
+</svg>
