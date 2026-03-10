@@ -15,15 +15,20 @@
   * [Swagger-UI 整合](/springboot/swagger-ui.md)
 
 * **📡 可观测性**
-  * [服务拓扑图实现方案设计](/observability/service-topology-design.md)
-  * [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
-  * [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
-  * [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
-  * [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md)
-  * [OTel Arthas Tunnel 分布式架构升级](/observability/otel-arthas-tunnel-distributed-upgrade.md)
-  * [Arthas SpyAPI 初始化机制分析](/observability/otel-arthas-spyapi-initialization.md)
-  * [OTel Java 二次开发经验](/observability/otel-java-development.md)
-  * [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
+  * **📐 方案设计**
+    * [服务拓扑图实现方案设计](/observability/design/service-topology-design.md)
+    * [OTel 延迟采样方案设计](/observability/design/otel-tail-based-sampling.md)
+    * [动态类增强与还原调研](/observability/design/otel-dynamic-instrumentation-design.md)
+  * **🔨 实现经验**
+    * [OTel Java Agent 控制平面](/observability/implementation/otel-java-agent-control-plane.md)
+    * [OTel 控制面长连接与任务系统](/observability/implementation/otel-controlplane-longpoll-task-system.md)
+    * [OTel Java 二次开发经验](/observability/implementation/otel-java-development.md)
+    * [Bootstrap CL 注入排查与修复](/observability/implementation/otel-bootstrap-classloader-injection.md)
+  * **🔧 Arthas 专题**
+    * [OTel Arthas Tunnel Extension](/observability/arthas/otel-arthas-tunnel-extension.md)
+    * [OTel Arthas 生命周期管理](/observability/arthas/otel-arthas-lifecycle-management.md)
+    * [OTel Arthas Tunnel 分布式架构升级](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md)
+    * [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md)
 
 * **🐹 Go 语言**
   * [Go 语言学习指南](/programmingLanguage/golang_study/GolangStudy.md)
