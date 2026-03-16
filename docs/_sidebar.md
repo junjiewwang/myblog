@@ -66,6 +66,8 @@
     * [和弦转位与指板](/music/guitar-chord-inversions.md)
     * [Drop2 和弦与转位](/music/guitar-drop2.md)
     * [3NPS 音阶系统](/music/guitar-3nps.md)
+  * **🛠️ 工具与实践**
+    * [AlphaTex 编谱实战指南](/music/guitar-alphatex-guide.md)
   * **🎹 其他**
     * [五线谱快速记忆](/music/piano-staff-memory.md)
 
