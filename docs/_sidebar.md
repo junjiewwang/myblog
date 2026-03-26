@@ -17,6 +17,7 @@
 * **📡 可观测性**
   * **📐 方案设计**
     * [服务拓扑图实现方案设计](/observability/design/service-topology-design.md)
+    * [peer.service 拓扑补齐方案设计](/observability/design/peer-service-topology-design.md)
     * [OTel 延迟采样方案设计](/observability/design/otel-tail-based-sampling.md)
     * [动态类增强与还原调研](/observability/design/otel-dynamic-instrumentation-design.md)
   * **🔨 实现经验**
