@@ -90,7 +90,87 @@
 5.3 -.3      // 二分 + 延长
 ```
 
-### 1.4 常用快捷写法
+### 1.4 休止符
+
+休止符用 `r` 替代品位.弦号，表示静默对应时长：
+
+```atex
+// 基本休止符
+r.1       // 全休止符（静默一整小节）
+r.2       // 二分休止符（静默两拍）
+r.4       // 四分休止符（静默一拍）
+r.8       // 八分休止符（静默半拍）
+r.16      // 十六分休止符
+r.32      // 三十二分休止符
+
+// 附点休止符（1.5 倍时值）
+r.4 { d }       // 附点四分休止符（1.5拍）
+r.4 { dd }      // 双附点四分休止符（1.75拍）
+```
+
+**实际应用示例：**
+
+```atex
+// 4/4拍 "弹弹停弹" 节奏
+:4 3.3 5.3 r 3.3 |
+
+// 前奏休止一小节再进
+:4 r * 4 | 0.3 2.3 4.3 5.3 |
+
+// 小节末尾休止
+:8 3.3 5.3 3.3 5.3 r r r r |
+```
+
+> **提示**：休止符同样受全局时值 `:` 控制，如果当前时值为 `:8`，直接写 `r` 就是八分休止符。
+
+### 1.5 延音线
+
+延音线（Tie）将两个**相同音高**的音符连接，第二个音不重新发声，而是延续第一个音的时值。
+
+**三种等价写法：**
+
+```atex
+// 方法1：用 - 替代品位（最简洁，推荐吉他谱使用）
+:2 5.3 -.3 |              // G弦5品延续到下一拍
+
+// 方法2：音符效果 {-}
+:2 5.3 5.3{-} |           // 效果完全相同
+
+// 方法3：音符效果 {t}
+:2 5.3 5.3{t} |           // t = tie 缩写
+```
+
+**和弦中的延音线（精确控制某根弦延续）：**
+
+```atex
+// 只有3弦延续，4弦重新发声
+:2 (5.3 3.4) (-.3 5.4) |
+
+// 只有4弦延续，3弦重新弹奏
+:2 (5.3 3.4) (5.3 -.4) |
+```
+
+**跨小节延音：**
+
+```atex
+// 5品的音延续到下一小节第一拍
+:4 5.3 5.3 5.3 5.3 | -.3 r r r |
+```
+
+**非弦乐器（钢琴/键盘）的延音线：**
+
+```atex
+// 非弦乐器没有"弦号"来确定延音对象，需用音高匹配规则
+:2 a4 - |                   // 前一拍只有一个音时，直接用 -
+
+// 和弦中需显式指定哪个音延续
+:2 (a4 a3) (a4{t} a3) |    // 第一个音延续，第二个重弹
+:2 (a4 a3) (- a3) |        // 同上，更简洁写法
+```
+
+> **注意**：延音线不同于击弦（hammer-on），前者连接**相同音高**（不重新发声），后者连接**不同音高**（左手击弦发声）。
+
+### 1.6 常用快捷写法
 
 ```atex
 // 重复同一节拍 N 次（乘法器）
@@ -165,6 +245,106 @@
 
 (0.1 1.2 2.3 2.4 0.5) { ch "Am" }    // 触发Am和弦图
 (3.1 0.2 0.3 0.4 2.5 3.6) { ch "G" } // 触发G和弦图
+```
+
+### 3.3 和弦图内联显示（chordDiagramsInScore）
+
+默认情况下，`\chord` 定义的**指法图**集中显示在乐谱头部（Header 区域），而 `{ ch "Am" }` 只会在小节上方显示和弦**名称**文字。
+
+通过 `\chordDiagramsInScore` 指令，可以让和弦指法图**内联显示在 `{ ch }` 引用的小节上方**，方便读谱者在演奏位置直接看到指法图。
+
+**语法：**
+
+```atex
+// 在 Score 元数据区（文件头）开启
+\chordDiagramsInScore           // 默认 true，开启内联和弦图
+\chordDiagramsInScore true      // 显式开启
+\chordDiagramsInScore false     // 关闭（回到默认的头部集中显示）
+```
+
+**完整示例：**
+
+```atex
+\title "和弦图内联演示"
+
+// 1. 开启内联和弦图显示
+\chordDiagramsInScore
+
+// 2. 定义和弦
+\chord ("E"  0 0 1 2 2 0)
+\chord ("Am" 0 1 2 2 0 x)
+\chord ("C"  0 1 0 2 3 x)
+\chord ("G"  3 0 0 0 2 3)
+
+\track "Guitar"
+\staff {tabs}
+\tuning (E4 B3 G3 D3 A2 E2)
+
+// 3. 在演奏位置用 { ch } 引用 → 和弦指法图直接显示在该小节上方
+:4
+(0.1 0.2 1.3 2.4 2.5 0.6) { ch "E" } * 2 |
+(0.1 1.2 2.3 2.4 0.5) { ch "Am" } * 2 |
+(0.1 1.2 0.3 2.4 3.5) { ch "C" } * 2 |
+(3.1 0.2 0.3 0.4 2.5 3.6) { ch "G" } * 2 |
+```
+
+> **效果对比**：
+> - **不加** `\chordDiagramsInScore`：指法图集中在乐谱头部，`{ ch "E" }` 处只显示 "E" 文字
+> - **加上** `\chordDiagramsInScore`：指法图直接出现在 `{ ch "E" }` 所在小节的上方，方便边弹边看
+
+### 3.4 和弦图属性控制
+
+除了内联显示，还可以精细控制每个和弦图的显示属性：
+
+**定义时控制显示属性：**
+
+```atex
+// showDiagram: 控制是否显示指法图
+\chord ("Am" 0 1 2 2 0 x)                          // 默认：显示指法图 + 名称
+\chord ("Am/E" 0 1 2 2 0 0) { showDiagram false }  // 只显示名称，不显示指法图
+
+// showName: 控制是否显示和弦名称
+\chord ("X"  3 3 3 1 1 1) { showName false }       // 只显示指法图，不显示名称
+
+// showFingering: 控制是否显示手指编号
+\chord ("C" 0 1 0 2 3 x) { showFingering false }   // 不显示手指编号
+
+// firstFret: 设置起始品位（高把位和弦）
+\chord ("Bm" 2 3 4 4 2 x) { firstFret 2 }         // 指法图从第2品开始显示
+
+// 组合使用
+\chord ("F"  1 1 2 3 3 1) { barre 1 firstFret 1 showName true }
+\chord ("D#" 6 8 8 8 6 x) { barre 6 firstFret 6 showFingering false }
+```
+
+**API 层面全局控制（JavaScript/C#/Kotlin）：**
+
+alphaTab 中和弦相关的显示由 3 个独立的 `NotationElement` 控制：
+
+| 枚举名 | 值 | 控制内容 |
+|--------|---|---------|
+| `ChordDiagrams` | 10 | 乐谱头部的和弦指法图 |
+| `EffectChordNames` | 16 | 小节上方的和弦名称文字 |
+| `ChordDiagramFretboardNumbers` | 52 | 指法图内的品位数字 |
+
+```javascript
+// 初始化时配置
+const api = new alphaTab.AlphaTabApi(element, {
+  notation: {
+    elements: {
+      chordDiagrams: true,                  // 头部指法图
+      effectChordNames: true,               // 小节上方和弦名称
+      chordDiagramFretboardNumbers: true    // 指法图内品位数字
+    }
+  }
+});
+
+// 运行时动态开关
+api.settings.notation.elements.set(
+  alphaTab.NotationElement.ChordDiagrams, false
+);
+api.updateSettings();
+api.render();
 ```
 
 ---
@@ -422,6 +602,50 @@ r.2 { txt "Pause" }
 \track "Guitar" { systemsLayout (2 3 2) }   // 第1行2小节，第2行3小节，第3行2小节
 \track "Guitar" { defaultSystemsLayout 4 }  // 默认每行4小节
 ```
+
+### 7.5 简谱谱表
+
+alphaTab 从 **v1.4.0** 开始支持简谱（Numbered Notation / 简谱），使用数字 1-7 表示 do-re-mi-fa-sol-la-si，在亚洲地区广泛使用。
+
+```atex
+// 方法1: TAB + 简谱 双行显示（推荐吉他手使用）
+\track "Guitar"
+\staff {tabs}                    // 第一谱表：TAB 谱
+\tuning (E4 B3 G3 D3 A2 E2)
+:4 0.3 2.3 4.3 5.3 |
+
+\staff {numberednotes}           // 第二谱表：简谱
+\tuning piano
+:4 0.3 2.3 4.3 5.3 |            // 相同的音符，渲染为数字简谱
+```
+
+```atex
+// 方法2: 仅简谱显示（适合键盘/教学场景）
+\track "Piano"
+\staff {numberednotes}
+\tuning piano
+:4 c4 d4 e4 f4 | g4 a4 b4 c5 |
+```
+
+```atex
+// 方法3: 五线谱 + 简谱 组合
+\track "Melody"
+\staff {score}                   // 五线谱
+\tuning piano
+:4 c4 d4 e4 f4 |
+
+\staff {numberednotes}           // 简谱（音高数据自动映射为 1234567）
+\tuning piano
+:4 c4 d4 e4 f4 |
+```
+
+**简谱规则：**
+- 数字 1-7 分别对应 do、re、mi、fa、sol、la、si
+- 高八度在数字上方加点，低八度在下方加点
+- 升降号用 `#`（升）和 `b`（降）表示，如 `#4` = Fa#
+- 需要 alphaTab >= **1.4.0** 版本支持
+
+> **提示**：简谱谱表中的音符数据与标准谱表共享，alphaTab 会自动将音高映射为简谱数字。在同一音轨中创建多个 `\staff`，可以让同一份音符数据以不同谱表类型同时展示。
 
 ---
 
