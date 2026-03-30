@@ -183,29 +183,60 @@ provision:
     #!/bin/sh
     sed -i 's/host.lima.internal.*/host.lima.internal host.docker.internal/' /etc/hosts
 
-# 安装 Docker
+# 安装 Docker（含 GitHub 可达性检测）
+# 注意：rootful 模式，Docker 以 root 运行，使用 sudo docker 操作
 - mode: system
   script: |
     #!/bin/bash
-    set -eux -o pipefail
+    set -eu -o pipefail
     command -v docker >/dev/null 2>&1 && exit 0
     export DEBIAN_FRONTEND=noninteractive
-    curl -fsSL https://get.docker.com | sh
 
-# 配置用户权限
-- mode: system
-  script: |
-    #!/bin/bash
-    set -eux -o pipefail
-    LIMA_USER=$(getent passwd 501 | cut -d: -f1)
-    [ -n "$LIMA_USER" ] && usermod -aG docker "$LIMA_USER"
+    # ===== GitHub 可达性检测 =====
+    # get.docker.com 脚本内部需要从 GitHub Releases 下载 docker-compose-plugin、
+    # docker-buildx-plugin 等组件，GitHub 不可达时安装会失败
+    echo "🔍 检测 GitHub 可达性..."
+    if ! curl -sS --connect-timeout 10 -o /dev/null https://github.com 2>/dev/null; then
+      echo ""
+      echo "=========================================="
+      echo "⚠️  Docker 自动安装已跳过：无法访问 GitHub"
+      echo "=========================================="
+      echo ""
+      echo "get.docker.com 脚本需要从 GitHub Releases 下载插件，当前网络不可达。"
+      echo "VM 仍会正常启动，请通过 APT 源手动安装（不依赖 GitHub）："
+      echo ""
+      echo "  limactl shell docker -- sudo bash -c '"
+      echo "    apt-get update && apt-get install -y ca-certificates curl gnupg"
+      echo "    && install -m 0755 -d /etc/apt/keyrings"
+      echo "    && curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
+      echo "    && chmod a+r /etc/apt/keyrings/docker.gpg"
+      echo "    && echo \"deb [arch=\$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \$(. /etc/os-release && echo \$VERSION_CODENAME) stable\" > /etc/apt/sources.list.d/docker.list"
+      echo "    && apt-get update"
+      echo "    && apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin"
+      echo "    && mkdir -p /etc/docker"
+      echo "    && printf \"{\\n  \\\"iptables\\\": false,\\n  \\\"log-driver\\\": \\\"json-file\\\",\\n  \\\"log-opts\\\": {\\\"max-file\\\": \\\"3\\\", \\\"max-size\\\": \\\"10m\\\"}\\n}\" > /etc/docker/daemon.json"
+      echo "    && systemctl enable --now docker"
+      echo "  '"
+      echo ""
+      echo "详细说明参考文档「5.4 手动安装 Docker（GitHub 不可达时）」章节。"
+      echo "=========================================="
+      exit 0  # 不阻塞后续 provision
+    fi
+
+    echo "✅ GitHub 可达，开始标准安装..."
+    curl -fsSL https://get.docker.com | sh
     systemctl enable --now docker
 
-# 配置 Docker daemon（关闭 iptables，docker-connector 需要）
+# 配置 Docker daemon（仅 Docker 已安装时执行）
+# 关闭 iptables，docker-connector 需要
 - mode: system
   script: |
     #!/bin/bash
     set -eux -o pipefail
+    if ! command -v docker >/dev/null 2>&1; then
+      echo "⏭️  Docker 未安装，跳过 daemon 配置"
+      exit 0
+    fi
     DAEMON_JSON="/etc/docker/daemon.json"
     if [ ! -f "$DAEMON_JSON" ] || ! grep -q '"iptables": false' "$DAEMON_JSON"; then
       cat > "$DAEMON_JSON" << 'EOF'
@@ -225,15 +256,18 @@ probes:
 - script: |
     #!/bin/bash
     set -eux -o pipefail
-    if ! timeout 30s bash -c "until command -v docker >/dev/null 2>&1; do sleep 3; done"; then
-      echo >&2 "docker is not installed yet"
-      exit 1
+    # Docker 未安装时（GitHub 不可达导致跳过），不阻塞 VM 启动
+    if ! command -v docker >/dev/null 2>&1; then
+      echo "⚠️  Docker 未安装，probe 跳过。请参考文档手动安装。"
+      exit 0
     fi
     if ! timeout 30s bash -c "until pgrep -x dockerd; do sleep 3; done"; then
       echo >&2 "dockerd is not running"
       exit 1
     fi
-  hint: See "/var/log/cloud-init-output.log" in the guest
+  hint: |
+    如果 Docker 未安装（GitHub 不可达），参考文档「5.4 手动安装 Docker（GitHub 不可达时）」章节。
+    日志查看: /var/log/cloud-init-output.log
 
 hostResolver:
   hosts:
@@ -290,9 +324,72 @@ YAML_EOF
 limactl start --name=docker ~/lima-templates/docker.yaml
 
 # 等待启动完成，看到 "READY" 字样
+# ⚠️ 如果看到 "Docker 自动安装已跳过：无法访问 GitHub" 提示，
+#    参考下方 5.4 节手动安装 Docker
 ```
 
-### 5.4 配置 Mac 端 Docker CLI
+### 5.4 手动安装 Docker（GitHub 不可达时）
+
+> 当 `limactl start` 时因 GitHub 不可达导致 Docker 安装跳过，按本节手动安装。
+> 核心思路：Docker 的 APT 仓库托管在 `download.docker.com`，国内**通常可访问**，不依赖 GitHub。
+
+直接在 VM 内配置 Docker 官方 APT 源，绕过 `get.docker.com` 脚本：
+
+```bash
+# 进入 VM
+limactl shell docker
+
+# 1. 安装前置依赖
+sudo apt-get update
+sudo apt-get install -y ca-certificates curl gnupg
+
+# 2. 添加 Docker 官方 GPG key
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# 3. 配置 Docker APT 源
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] \
+  https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# 4. 安装 Docker Engine 全套组件
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io \
+  docker-buildx-plugin docker-compose-plugin
+
+# 5. 配置 daemon（关闭 iptables，docker-connector 需要）
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json << 'EOF'
+{
+  "iptables": false,
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-file": "3",
+    "max-size": "10m"
+  }
+}
+EOF
+
+# 6. 启动 Docker
+sudo systemctl enable --now docker
+
+# 7. 验证
+sudo docker --version
+sudo docker compose version
+sudo docker run hello-world
+
+# 8. 退出 VM
+exit
+```
+
+> **为什么这种方式不需要 GitHub？**
+> `get.docker.com` 脚本会从 GitHub Releases 下载 compose/buildx 插件的二进制文件，
+> 而 APT 方式直接从 `download.docker.com` 的 deb 仓库获取所有包（包括 compose 和 buildx），完全不经过 GitHub。
+
+### 5.5 配置 Mac 端 Docker CLI
 
 ```bash
 # 安装 Docker CLI（如果未安装）
@@ -307,7 +404,7 @@ docker run hello-world
 docker info | grep "Server Version"
 ```
 
-### 5.5 验证网络
+### 5.6 验证网络
 
 ```bash
 # 验证 lima0 网卡已分配 IP
@@ -652,6 +749,23 @@ Docker 开启 iptables 管理后，会在 raw 表为容器添加 `NOTRACK` 和 `
 
 关闭 Docker iptables 后，需要通过 `setup-docker-network.sh` 脚本手动管理 NAT 和 FORWARD 规则。
 
+### Q6: VM 启动后发现 Docker 未安装
+
+**原因**：`limactl start` 过程中因 GitHub 不可达，provision 脚本自动跳过了 Docker 安装。
+
+**确认方式**：
+
+```bash
+# 进入 VM 检查
+limactl shell docker -- docker --version
+# 如果报 "command not found" 说明 Docker 未安装
+
+# 查看 provision 日志确认原因
+limactl shell docker -- grep -A5 "GitHub" /var/log/cloud-init-output.log
+```
+
+**解决**：参考 **5.4 手动安装 Docker（GitHub 不可达时）** 章节，通过 APT 源安装即可。
+
 ---
 
 ## 12. 日常操作速查
@@ -713,4 +827,4 @@ limactl shell docker -- sudo bash /root/setup-docker-network.sh
 
 ---
 
-*最后更新：2026-03-03*
+*最后更新：2026-03-30*
