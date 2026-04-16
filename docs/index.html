@@ -46,7 +46,12 @@
             --sidebar-background: #fff;
             --sidebar-nav-link-color: #3a3a3a;
             --sidebar-nav-link-color--active: var(--theme-color);
-            --sidebar-nav-link-font-weight--active: 600;
+            --sidebar-nav-link-font-weight--active: normal;
+            --sidebar-nav-link-border-color--active: transparent;
+            --sidebar-nav-link-border-width--active: 0;
+            --sidebar-nav-link-border-width: 0;
+            --sidebar-nav-link-background--active: rgba(66, 185, 131, 0.08);
+            --sidebar-nav-link-margin: 0;
             
             /* 内容区域 */
             --content-max-width: 900px;
@@ -469,11 +474,9 @@
             background: var(--bg-color-tertiary);
         }
 
-        /* 当前激活的文章 */
-        .sidebar-nav li li a.active {
+        /* 当前激活的文章 — 由增强指示器统一管理样式 */
+        .sidebar-nav li li.active > a {
             color: var(--theme-color) !important;
-            background: rgba(66, 185, 131, 0.1);
-            font-weight: 500;
         }
 
         /* 三级子分类标题 — 轻量分组标签 */
@@ -1271,6 +1274,359 @@
                 background: var(--bg-color-tertiary) !important;
             }
         }
+
+        /* ==================== 侧边栏 active 链接增强指示器 ==================== */
+
+        /* 清除 docsify-themeable 的 active 右边框和负 margin */
+        .sidebar-nav li.active > a,
+        .sidebar-nav li.collapse > a {
+            border: none !important;
+            margin-right: 0 !important;
+        }
+
+        /* 当前激活的文章 — 柔和背景 + 主题色文字 + 圆角（与右侧 TOC 风格统一）
+           选择器使用 li.active > a，匹配 docsify-themeable 的实际逻辑 */
+        .sidebar-nav li.active > a {
+            color: var(--theme-color) !important;
+            font-weight: normal !important;
+            background: rgba(66, 185, 131, 0.08) !important;
+            border-radius: 4px !important;
+            border: none !important;
+        }
+
+        /* pagelink 箭头：active 状态隐藏箭头背景，只保留纯色底色 */
+        .sidebar-nav li.active > a[href^="#/"]:not([href*="?id="]):not(:only-child) {
+            background: rgba(66, 185, 131, 0.08) !important;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .sidebar-nav li.active > a {
+                background: rgba(66, 211, 146, 0.1) !important;
+            }
+            .sidebar-nav li.active > a[href^="#/"]:not([href*="?id="]):not(:only-child) {
+                background: rgba(66, 211, 146, 0.1) !important;
+            }
+        }
+
+        /* ==================== 右侧 TOC 面板 ==================== */
+        :root {
+            --toc-width: 220px;
+        }
+
+        /* 桌面端内容区域右移，为 TOC 留空间 */
+        @media screen and (min-width: 769px) {
+            body:not(.toc-hidden) .content {
+                padding-right: calc(var(--toc-width) + 20px) !important;
+            }
+        }
+
+        /* TOC 容器 */
+        .toc-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: var(--toc-width);
+            height: 100vh;
+            background: var(--sidebar-background);
+            border-left: 1px solid var(--border-color);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+
+        /* 隐藏状态 */
+        body.toc-hidden .toc-panel {
+            transform: translateX(100%);
+        }
+
+        /* TOC 头部 */
+        .toc-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            flex-shrink: 0;
+        }
+
+        .toc-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-color-tertiary);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .toc-toggle-btn {
+            width: 24px;
+            height: 24px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            color: var(--text-color-tertiary);
+            transition: all 0.2s ease;
+            padding: 0;
+            font-size: 14px;
+        }
+
+        .toc-toggle-btn:hover {
+            background: var(--bg-color-tertiary);
+            color: var(--theme-color);
+        }
+
+        /* TOC 列表容器 */
+        .toc-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 8px 0;
+        }
+
+        .toc-body::-webkit-scrollbar {
+            width: 3px;
+        }
+
+        .toc-body::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 2px;
+        }
+
+        /* TOC 列表 */
+        .toc-list {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .toc-item {
+            position: relative;
+        }
+
+        .toc-link {
+            display: block;
+            padding: 5px 16px 5px 16px;
+            font-size: 12.5px;
+            line-height: 1.5;
+            color: var(--text-color-secondary) !important;
+            text-decoration: none !important;
+            border-left: 2px solid transparent;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border-bottom: none !important;
+        }
+
+        .toc-link:hover {
+            color: var(--theme-color) !important;
+            background: var(--bg-color-secondary);
+            border-bottom: none !important;
+        }
+
+        /* h3 子级缩进 */
+        .toc-link[data-level="3"] {
+            padding-left: 28px;
+            font-size: 12px;
+            color: var(--text-color-tertiary) !important;
+        }
+
+        /* 当前激活的章节 */
+        .toc-link.active {
+            color: var(--theme-color) !important;
+            border-left-color: var(--theme-color);
+            background: rgba(66, 185, 131, 0.08);
+            font-weight: 500;
+        }
+
+        /* 折叠边缘按钮（TOC 隐藏时显示） */
+        .toc-edge-btn {
+            position: fixed;
+            right: 0;
+            top: 80px;
+            width: 28px;
+            height: 56px;
+            background: var(--sidebar-background);
+            border: 1px solid var(--border-color);
+            border-right: none;
+            border-radius: 14px 0 0 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 51;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: -2px 0 8px rgba(0,0,0,0.08);
+            padding: 0;
+        }
+
+        body.toc-hidden .toc-edge-btn {
+            opacity: 0.85;
+            visibility: visible;
+        }
+
+        .toc-edge-btn:hover {
+            opacity: 1;
+            width: 32px;
+            background: var(--theme-color);
+            border-color: var(--theme-color);
+            box-shadow: -2px 0 12px rgba(66, 185, 131, 0.3);
+        }
+
+        .toc-edge-btn::before {
+            content: '';
+            display: block;
+            width: 7px;
+            height: 7px;
+            border-right: 2px solid var(--theme-color);
+            border-bottom: 2px solid var(--theme-color);
+            transform: rotate(-45deg);
+            margin-right: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .toc-edge-btn:hover::before {
+            border-color: white;
+            transform: rotate(-45deg) translateX(-2px);
+        }
+
+        /* 无 TOC 内容时隐藏 */
+        .toc-panel.empty {
+            display: none;
+        }
+
+        body.toc-hidden .toc-edge-btn.empty {
+            display: none;
+        }
+
+        /* ==================== 移动端 TOC ==================== */
+        @media screen and (max-width: 768px) {
+            /* 移动端不需要内容区右移 */
+            .content {
+                padding-right: 0 !important;
+            }
+
+            /* 隐藏桌面端 TOC */
+            .toc-panel {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 75vw;
+                max-width: 300px;
+                height: 100vh;
+                transform: translateX(100%);
+                box-shadow: -4px 0 20px rgba(0,0,0,0.15);
+                z-index: 200;
+            }
+
+            .toc-panel.mobile-open {
+                transform: translateX(0);
+            }
+
+            /* 隐藏桌面端边缘按钮 */
+            .toc-edge-btn {
+                display: none !important;
+            }
+
+            body.toc-hidden .toc-edge-btn {
+                display: none !important;
+            }
+
+            /* 移动端浮动按钮 */
+            .toc-fab {
+                position: fixed;
+                right: 16px;
+                bottom: 120px;
+                width: 40px;
+                height: 40px;
+                background: var(--theme-color);
+                border: none;
+                border-radius: 50%;
+                cursor: pointer;
+                z-index: 98;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                box-shadow: 0 2px 12px rgba(66, 185, 131, 0.35);
+                opacity: 0.85;
+                transition: all 0.3s ease;
+                color: white;
+                font-size: 16px;
+                padding: 0;
+            }
+
+            .toc-fab:hover, .toc-fab:active {
+                opacity: 1;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 16px rgba(66, 185, 131, 0.5);
+            }
+
+            .toc-fab.empty {
+                display: none !important;
+            }
+
+            /* 遮罩层 */
+            .toc-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.4);
+                z-index: 199;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+
+            .toc-overlay.visible {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+
+        /* 桌面端隐藏移动端元素 */
+        @media screen and (min-width: 769px) {
+            .toc-fab {
+                display: none !important;
+            }
+            .toc-overlay {
+                display: none !important;
+            }
+        }
+
+        /* ==================== 深色模式 TOC ==================== */
+        @media (prefers-color-scheme: dark) {
+            .toc-panel {
+                background: var(--sidebar-background);
+                border-left-color: var(--border-color);
+            }
+
+            .toc-edge-btn {
+                background: var(--sidebar-background);
+                border-color: var(--border-color);
+                box-shadow: -2px 0 8px rgba(0,0,0,0.3);
+            }
+
+            .toc-edge-btn:hover {
+                background: var(--theme-color);
+                box-shadow: -2px 0 12px rgba(66, 211, 146, 0.4);
+            }
+
+            .toc-edge-btn:hover::before {
+                border-color: white;
+            }
+
+            .toc-link.active {
+                background: rgba(66, 211, 146, 0.1);
+            }
+        }
     </style>
 </head>
 
@@ -1286,6 +1642,26 @@
     <!-- 回到顶部按钮 -->
     <button id="back-to-top" title="回到顶部"></button>
     
+    <!-- 右侧 TOC 面板 -->
+    <div id="toc-panel" class="toc-panel">
+        <div class="toc-header">
+            <span class="toc-title">目录</span>
+            <button class="toc-toggle-btn" id="toc-hide-btn" title="收起目录">✕</button>
+        </div>
+        <div class="toc-body">
+            <ul class="toc-list" id="toc-list"></ul>
+        </div>
+    </div>
+    
+    <!-- TOC 边缘展开按钮（桌面端，TOC 隐藏时显示） -->
+    <button id="toc-edge-btn" class="toc-edge-btn" title="展开目录"></button>
+    
+    <!-- 移动端 TOC 浮动按钮 -->
+    <button id="toc-fab" class="toc-fab" title="章节目录">☰</button>
+    
+    <!-- 移动端 TOC 遮罩 -->
+    <div id="toc-overlay" class="toc-overlay"></div>
+    
     <script>
         window.$docsify = {
             // ==================== 基础配置 ====================
@@ -1296,7 +1672,7 @@
             // ==================== 侧边栏配置 ====================
             loadSidebar: true,
             autoHeader: false,  // 禁用自动标题，避免重复
-            subMaxLevel: 3,
+            subMaxLevel: 0,    // 侧边栏仅显示文章名，章节目录由右侧 TOC 面板承担
             // 所有页面使用统一的侧边栏和导航栏
             alias: {
                 '/.*/_sidebar.md': '/_sidebar.md',
@@ -1895,6 +2271,251 @@
             }
             // 如果是文章链接，则不处理，让其自然冒泡触发 Docsify 的跳转并收起侧边栏
         }, true); // 捕获阶段拦截
+    })();
+    </script>
+
+    <!-- 侧边栏 active 链接自动滚动 + 右侧 TOC 面板 -->
+    <script>
+    (function() {
+        // ==================== 侧边栏 active 链接自动滚动到可视区 ====================
+        function scrollSidebarToActive() {
+            var sidebar = document.querySelector('.sidebar');
+            var activeLink = document.querySelector('.sidebar-nav li a.active');
+            if (!sidebar || !activeLink) return;
+
+            // 找到侧边栏的可滚动容器
+            var scrollContainer = sidebar.querySelector('.sidebar-nav') || sidebar;
+            var containerRect = sidebar.getBoundingClientRect();
+            var linkRect = activeLink.getBoundingClientRect();
+
+            // 如果 active 链接不在可视区域内，则滚动
+            if (linkRect.top < containerRect.top + 60 || linkRect.bottom > containerRect.bottom - 30) {
+                activeLink.scrollIntoView({ block: 'center', behavior: 'smooth' });
+            }
+        }
+
+        // ==================== 右侧 TOC 面板核心逻辑 ====================
+        var tocPanel = document.getElementById('toc-panel');
+        var tocList = document.getElementById('toc-list');
+        var tocHideBtn = document.getElementById('toc-hide-btn');
+        var tocEdgeBtn = document.getElementById('toc-edge-btn');
+        var tocFab = document.getElementById('toc-fab');
+        var tocOverlay = document.getElementById('toc-overlay');
+        var headingElements = []; // 当前页面的标题 DOM 元素
+        var observer = null;     // IntersectionObserver 实例
+
+        // ---------- TOC 构建 ----------
+        function buildTOC() {
+            if (!tocList) return;
+            tocList.innerHTML = '';
+            headingElements = [];
+
+            // 获取 markdown 渲染后的 h2/h3
+            var markdownSection = document.querySelector('.markdown-section');
+            if (!markdownSection) {
+                setTOCEmpty(true);
+                return;
+            }
+
+            var headings = markdownSection.querySelectorAll('h2, h3');
+            if (headings.length === 0) {
+                setTOCEmpty(true);
+                return;
+            }
+
+            setTOCEmpty(false);
+
+            headings.forEach(function(heading) {
+                var id = heading.id;
+                var text = heading.textContent.replace(/^#*\s*/, '').trim();
+                var level = heading.tagName === 'H2' ? 2 : 3;
+
+                if (!id || !text) return;
+
+                var li = document.createElement('li');
+                li.className = 'toc-item';
+
+                var a = document.createElement('a');
+                a.className = 'toc-link';
+                a.href = '#' + getCurrentPath() + '?id=' + id;
+                a.setAttribute('data-level', level);
+                a.setAttribute('data-id', id);
+                a.textContent = text;
+                a.title = text;
+
+                a.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var target = document.getElementById(id);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        // 更新 URL hash（不触发 docsify 跳转）
+                        history.replaceState(null, null, '#' + getCurrentPath() + '?id=' + id);
+                    }
+                    // 移动端点击后关闭抽屉
+                    if (window.innerWidth <= 768) {
+                        closeMobileTOC();
+                    }
+                });
+
+                li.appendChild(a);
+                tocList.appendChild(li);
+                headingElements.push({ el: heading, id: id, link: a });
+            });
+
+            // 启动滚动同步
+            setupScrollSpy();
+        }
+
+        // ---------- 获取当前路由路径 ----------
+        function getCurrentPath() {
+            var hash = location.hash || '';
+            // 去掉 #/ 前缀和 ?id=xxx 后缀
+            var path = hash.replace(/^#/, '').split('?')[0];
+            return path || '/';
+        }
+
+        // ---------- 滚动同步高亮（IntersectionObserver） ----------
+        function setupScrollSpy() {
+            // 清理旧 observer
+            if (observer) {
+                observer.disconnect();
+                observer = null;
+            }
+
+            if (headingElements.length === 0) return;
+
+            // 使用 IntersectionObserver
+            var options = {
+                root: null,
+                rootMargin: '-60px 0px -70% 0px',
+                threshold: 0
+            };
+
+            observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        var id = entry.target.id;
+                        highlightTOCLink(id);
+                    }
+                });
+            }, options);
+
+            headingElements.forEach(function(item) {
+                observer.observe(item.el);
+            });
+
+            // 初始高亮：找到当前可视区域内最近的标题
+            highlightNearest();
+        }
+
+        function highlightNearest() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var nearest = null;
+            var nearestDist = Infinity;
+
+            headingElements.forEach(function(item) {
+                var rect = item.el.getBoundingClientRect();
+                var dist = Math.abs(rect.top - 80);
+                if (rect.top <= 120 && dist < nearestDist) {
+                    nearest = item;
+                    nearestDist = dist;
+                }
+            });
+
+            if (nearest) {
+                highlightTOCLink(nearest.id);
+            }
+        }
+
+        function highlightTOCLink(activeId) {
+            var links = tocList.querySelectorAll('.toc-link');
+            links.forEach(function(link) {
+                if (link.getAttribute('data-id') === activeId) {
+                    link.classList.add('active');
+                    // 确保高亮项在 TOC 面板可视区内
+                    var tocBody = tocPanel.querySelector('.toc-body');
+                    if (tocBody) {
+                        var linkRect = link.getBoundingClientRect();
+                        var bodyRect = tocBody.getBoundingClientRect();
+                        if (linkRect.top < bodyRect.top || linkRect.bottom > bodyRect.bottom) {
+                            link.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+                        }
+                    }
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+        }
+
+        // ---------- 空状态控制 ----------
+        function setTOCEmpty(isEmpty) {
+            if (tocPanel) tocPanel.classList.toggle('empty', isEmpty);
+            if (tocEdgeBtn) tocEdgeBtn.classList.toggle('empty', isEmpty);
+            if (tocFab) tocFab.classList.toggle('empty', isEmpty);
+        }
+
+        // ---------- 桌面端 TOC 折叠/展开 ----------
+        function hideTOC() {
+            document.body.classList.add('toc-hidden');
+        }
+
+        function showTOC() {
+            document.body.classList.remove('toc-hidden');
+        }
+
+        if (tocHideBtn) {
+            tocHideBtn.addEventListener('click', hideTOC);
+        }
+
+        if (tocEdgeBtn) {
+            tocEdgeBtn.addEventListener('click', showTOC);
+        }
+
+        // ---------- 移动端 TOC 抽屉 ----------
+        function openMobileTOC() {
+            if (tocPanel) tocPanel.classList.add('mobile-open');
+            if (tocOverlay) tocOverlay.classList.add('visible');
+        }
+
+        function closeMobileTOC() {
+            if (tocPanel) tocPanel.classList.remove('mobile-open');
+            if (tocOverlay) tocOverlay.classList.remove('visible');
+        }
+
+        if (tocFab) {
+            tocFab.addEventListener('click', function() {
+                if (tocPanel.classList.contains('mobile-open')) {
+                    closeMobileTOC();
+                } else {
+                    openMobileTOC();
+                }
+            });
+        }
+
+        if (tocOverlay) {
+            tocOverlay.addEventListener('click', closeMobileTOC);
+        }
+
+        // ---------- 滚动节流补充（IntersectionObserver 对快速滚动可能不灵敏） ----------
+        var scrollTimer = null;
+        window.addEventListener('scroll', function() {
+            if (scrollTimer) return;
+            scrollTimer = setTimeout(function() {
+                scrollTimer = null;
+                highlightNearest();
+            }, 100);
+        }, { passive: true });
+
+        // ==================== Docsify 插件注册 ====================
+        window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+            hook.doneEach(function() {
+                // 每次页面切换后重建 TOC + 滚动同步
+                setTimeout(function() {
+                    buildTOC();
+                    scrollSidebarToActive();
+                }, 150);
+            });
+        });
     })();
     </script>
 

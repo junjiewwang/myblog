@@ -3,10 +3,6 @@
 * **🏠 首页**
   * [首页](/)
 
-* **⭐ 精选推荐**
-  * [Go 语言完整学习指南](/programmingLanguage/golang_study/GolangStudy.md)
-  * [Java HPROF 调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
-
 * **☕ Java & Spring**
   * [Arthas 性能分析实践](/java/arthas-async-profiler.md)
   * [Java HPROF 调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
