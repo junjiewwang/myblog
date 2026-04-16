@@ -449,6 +449,23 @@ x.3 { psd }    // Pick 下滑
 5.3 { bu }   // 刷弦向上（brush up）
 5.3 { bd }   // 刷弦向下（brush down）
 
+// 琶音 Arpeggio（和弦音符依次拨响，比扫弦更慢更分明）
+(0.1 0.2 0.3 2.4 2.5 0.6) { au }       // 向上琶音 ↑（低弦→高弦）
+(0.1 0.2 0.3 2.4 2.5 0.6) { ad }       // 向下琶音 ↓（高弦→低弦）
+(0.1 0.2 0.3 2.4 2.5 0.6) { au 120 }   // 自定义琶音速度（MIDI ticks）
+// 琶音 vs 扫弦：au/ad 音符间有明显时间间隔，su/sd 更快速连贯
+
+// 装饰音 Grace Note（将整个 beat 标记为装饰音）
+3.3 { gr }          // 拍前装饰音（默认 before-beat，缩写 bb）
+3.3 { gr ob }       // 拍上装饰音（on-beat）
+3.3 { gr b }        // 推弦装饰音（bend grace）
+// 装饰音 + 击弦组合（gr 是 beat 级，h 是 note 级，可同时使用）
+1.2{h} { gr }       // 装饰音击弦：2弦1品作为拍前装饰音，击弦连到下一个音
+
+// 实战：装饰音在乐句中的应用
+// (3.2 0.6) 0.3 3.1 0.2 | 1.2{gr h} (3.2 0.5) 1.2.8 0.3 2.4
+// 其中 1.2{gr h} = 2弦1品，标记为装饰音+击弦，快速过渡到后续音
+
 // 渐强渐弱
 5.3 { cre }   // 渐强 crescendo <
 5.3 { dec }   // 渐弱 decrescendo >
@@ -973,6 +990,9 @@ alphaTab 从 **v1.4.0** 开始支持简谱（Numbered Notation / 简谱），使
 | `s`  | slap | Bass打弦 |
 | `p`  | pop | Bass勾弦 |
 | `tt` | tapping | 敲弦 |
+| `gr` / `gr ob` / `gr b` | grace note | 装饰音（bb=拍前/ob=拍上/b=推弦） |
+| `au` | arpeggio up | 向上琶音 ↑ |
+| `ad` | arpeggio down | 向下琶音 ↓ |
 
 ### 小节级别标签
 
