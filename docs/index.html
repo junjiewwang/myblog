@@ -448,59 +448,103 @@
         }
 
         /* ==================== 侧边栏样式（配合 sidebar-collapse 插件） ==================== */
-        /* 分类标题样式 */
+
+        /* --- 全局：去掉所有箭头 --- */
+        /* 1) sidebar-collapse 插件用 ::before 伪元素画的折叠箭头 */
+        .sidebar-nav ul:not(.app-sub-sidebar) > li::before {
+            display: none !important;
+        }
+        /* 2) docsify-themeable 用 background-image 渐变画的 > 箭头 */
+        .sidebar-nav li > a,
+        .sidebar-nav li > p,
+        .sidebar-nav li > strong {
+            background-image: none !important;
+        }
+
+        /* --- 一级分类标题 --- */
+        .sidebar-nav > ul > li {
+            margin-top: 4px;
+            padding-top: 8px;
+            border-top: 1px solid rgba(128, 128, 128, 0.1);
+        }
+        /* 第一个分类不需要顶部分隔线 */
+        .sidebar-nav > ul > li:first-child {
+            border-top: none;
+            margin-top: 0;
+            padding-top: 0;
+        }
+
         .sidebar-nav > ul > li > p,
         .sidebar-nav > ul > li > strong {
             font-weight: 600 !important;
-            color: var(--theme-color) !important;
-            font-size: 14px;
-            margin: 12px 0 6px 0;
-            padding: 6px 0;
-            display: block;
-        }
-
-        /* 文章链接样式 */
-        .sidebar-nav li li a {
+            color: var(--text-color) !important;
             font-size: 13px;
-            color: var(--sidebar-nav-link-color) !important;
-            padding: 5px 0 5px 8px;
+            margin: 4px 0 4px 0;
+            padding: 6px 8px;
             display: block;
+            letter-spacing: 0.3px;
+            cursor: pointer;
             border-radius: 4px;
-            transition: all 0.2s ease;
+            transition: background 0.2s ease;
+        }
+        .sidebar-nav > ul > li > p:hover,
+        .sidebar-nav > ul > li > strong:hover {
+            background: rgba(128, 128, 128, 0.06);
         }
 
-        .sidebar-nav li li a:hover {
-            color: var(--theme-color) !important;
-            background: var(--bg-color-tertiary);
-        }
-
-        /* 当前激活的文章 — 由增强指示器统一管理样式 */
-        .sidebar-nav li li.active > a {
-            color: var(--theme-color) !important;
-        }
-
-        /* 三级子分类标题 — 轻量分组标签 */
-        .sidebar-nav > ul > li > ul > li > p,
-        .sidebar-nav > ul > li > ul > li > strong,
-        .sidebar-nav > ul > li > ul > li > p > strong {
+        /* --- 二级子分类标题（方案设计、实现经验、Arthas 专题等） --- */
+        .sidebar-nav > ul > li > ul > li.folder > p,
+        .sidebar-nav > ul > li > ul > li.folder > strong,
+        .sidebar-nav > ul > li > ul > li.folder > p > strong {
             font-size: 12px !important;
             font-weight: 500 !important;
-            color: var(--text-color-tertiary) !important;
-            letter-spacing: 0.5px;
-            margin: 12px 0 2px 0;
-            padding: 0 0 0 4px;
+            color: var(--text-color-secondary, #888) !important;
+            letter-spacing: 0.4px;
+            margin: 10px 0 2px 0;
+            padding: 4px 8px;
             display: block;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s ease;
+        }
+        .sidebar-nav > ul > li > ul > li.folder > p:hover,
+        .sidebar-nav > ul > li > ul > li.folder > strong:hover,
+        .sidebar-nav > ul > li > ul > li.folder > p > strong:hover {
+            background: rgba(128, 128, 128, 0.06);
         }
 
-        /* 去掉三级子分类项的底部分隔线 */
+        /* 去掉子分类项的底部分隔线 */
         .sidebar-nav > ul > li > ul > li {
             border-bottom: none !important;
         }
 
+        /* --- 文章链接样式 --- */
+        .sidebar-nav li.file > a {
+            font-size: 13px;
+            color: var(--sidebar-nav-link-color) !important;
+            padding: 5px 8px;
+            padding-left: 8px !important;
+            display: block;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            background-image: none !important;
+        }
+
+        .sidebar-nav li.file > a:hover {
+            color: var(--theme-color) !important;
+            background: rgba(128, 128, 128, 0.06);
+        }
+
         /* 三级子分类下的文章链接 — 缩进更紧凑 */
-        .sidebar-nav > ul > li > ul > li > ul > li > a {
+        .sidebar-nav > ul > li > ul > li > ul > li.file > a {
             font-size: 12.5px;
-            padding: 4px 0 4px 8px;
+            padding: 4px 8px;
+        }
+
+        /* --- 当前激活文章 --- */
+        .sidebar-nav li.file.active > a,
+        .sidebar-nav li.active > a {
+            color: var(--theme-color) !important;
         }
 
         /* ==================== 搜索框 ==================== */
@@ -1307,6 +1351,7 @@
                 background: rgba(66, 211, 146, 0.1) !important;
             }
         }
+
 
         /* ==================== 右侧 TOC 面板 ==================== */
         :root {

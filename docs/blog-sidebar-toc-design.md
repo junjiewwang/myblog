@@ -58,8 +58,49 @@
 - [x] 添加 TOC 核心 JS 逻辑
 - [x] 添加侧边栏 active 自动滚动 JS
 - [x] 移动端浮动按钮 + 抽屉适配
+- [x] 移除"精选推荐"分类
+- [x] 侧边栏 active 样式优化：柔和浅背景 + 圆角 + 去除绿色竖条和加粗
+- [x] 统一隐藏文章（叶子）节点前的 `>` 箭头
+- [x] 重新设计侧边栏层级样式（去掉所有箭头，参考 VitePress/Docusaurus 风格）
+
+## 关键技术点
+
+### 侧边栏箭头隐藏原理
+
+docsify 侧边栏存在两类箭头来源，需要分别覆盖：
+
+1. **sidebar-collapse 插件的 `::before` 伪元素箭头**
+   - 选择器：`.sidebar-nav ul:not(.app-sub-sidebar) > li:not(.file)::before`
+   - 通过 `border-right + border-bottom + rotate` 画折叠三角
+   - 覆盖方式：`.sidebar-nav ul:not(.app-sub-sidebar) > li::before { display: none !important; }`
+
+2. **docsify-themeable 主题的 `background-image` 渐变箭头**
+   - 在 `<a>`、`<p>`、`<strong>` 元素的 `padding-left` 区域用 `linear-gradient(45deg/135deg)` 画 `>` 箭头
+   - 覆盖方式：`.sidebar-nav li > a, .sidebar-nav li > p, .sidebar-nav li > strong { background-image: none !important; }`
+
+### 层级样式设计（VitePress 风格）
+
+| 层级 | 元素 | 字号 | 字重 | 颜色 | 间距 |
+|------|------|------|------|------|------|
+| 一级分类 | `> ul > li > p/strong` | 13px | 600 | `--text-color` | `margin-top: 4px; padding-top: 8px; border-top 分隔线` |
+| 二级子分类 | `li.folder.level-2 > strong` | 12px | 500 | `--text-color-secondary` | `margin: 10px 0 2px 0` |
+| 文章链接 | `li.file > a` | 13px / 12.5px（三级） | normal | `--sidebar-nav-link-color` | `padding: 5px 8px` |
+
+### 插件自动分类机制
+
+- `docsify-sidebar-collapse` 在 `doneEach` 钩子中自动给叶子 li 加 `.file` 类、分类 li 加 `.folder` 类和 `level-N` 类
+- 无需额外 JS（之前的 `markLeafArticles()` 函数已清理）
 
 ## 遗留问题
 
-- 待实际浏览测试验证滚动同步精度
-- 如 TOC 宽度影响移动端阅读体验，可调整 `--toc-width` 变量
+- 无
+
+## 验证记录
+
+**2026-04-18** 使用 Playwright headless Chromium 探测所有 folder 节点 CSS 状态：
+- 所有 `li.folder` 的 `li::before` display = `none` ✅（sidebar-collapse 箭头已隐藏）
+- 所有 `<p>/<strong>` 的 `backgroundImage` = `none` ✅（docsify-themeable 渐变箭头已隐藏）
+- 截图确认：一级分类、二级子分类、文章链接均无任何箭头残留
+- 层级区分清晰：通过字号、字重、颜色深浅和间距实现视觉层次
+- 折叠/展开功能正常
+- 若浏览器未显示变化，需 Cmd+Shift+R 硬刷新清除缓存
