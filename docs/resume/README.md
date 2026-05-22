@@ -31,11 +31,11 @@
 
 **团队方向**：可观测性平台（APM / 基础监控）
 
-- 负责 OpenTelemetry Java Agent 二次开发，实现对内部框架的无侵入链路追踪
+- 负责 OpenTelemetry Java Agent 二次开发，支持对内部框架的链路追踪
 - 设计并实现 Agent 远程控制平面，支持配置热更新、远程诊断、采样策略下发
-- 开发 Arthas 分布式 Tunnel 扩展，支持集群级一键诊断
+- 开发 Arthas 分布式 Tunnel 扩展，支持通过控制面远程触发诊断
 - 参与 APM / 基础监控产品私有化落地与交付
-- 核心链路性能调优，排查并修复 JVM 内存泄漏与 FullGC 问题
+- 参与核心链路性能调优，排查 JVM 内存泄漏与 FullGC 问题
 
 ### 某央企研发中心 · Java 开发工程师 · 2020.01 - 2022.02
 
@@ -50,19 +50,18 @@
 
 | 项目 | 我的核心贡献 | 详情 |
 |------|-------------|------|
-| Java Agent 远程控制平面 | 设计 Protobuf 协议栈 + 长轮询 + 无锁热切换 + SPI 插件化，实现配置秒级下发与远程诊断 | [→ 详情](projects/agent-control-plane.md) |
+| Java Agent 远程控制平面 | 基于 Protobuf + 长轮询实现配置下发与远程诊断，SPI 插件化支持扩展 | [→ 详情](projects/agent-control-plane.md) |
 | Arthas Tunnel Extension | 将 Arthas 诊断能力集成到 OTel 生态，通过控制面远程下发诊断任务 | [→ 详情](projects/arthas-tunnel-extension.md) |
-| HPROF 解析器优化 | 重写大内存堆快照索引构建路径，大幅提升解析速度并降低内存占用 | [→ 详情](projects/hprof-parser-optimization.md) |
-| MySQL 索引优化 | 排查联合索引最左前缀不匹配导致的全索引扫描，新增覆盖索引减少 89% 无效 IO | [→ 详情](/database/mysql-index-optimization-case.md) |
+| HPROF 解析器优化 | 重写大内存堆快照索引构建路径，提升解析速度并降低内存占用 | [→ 详情](projects/hprof-parser-optimization.md) |
+| MySQL 索引优化 | 排查联合索引最左前缀不匹配问题，新增覆盖索引减少无效 IO | [→ 详情](/database/mysql-index-optimization-case.md) |
 
 ---
 
 ## 核心能力
 
 ```
-可观测性（OpenTelemetry 生态） · 分布式系统设计 · 字节码增强(ByteBuddy)
-无锁并发 · SPI 插件化架构 · 状态机设计 · 长连接通信
-JVM 调优 · MySQL 索引优化 · 容器化部署
+可观测性（OpenTelemetry） · 字节码增强(ByteBuddy) · 并发编程
+SPI 插件化 · 长连接通信 · JVM 调优 · MySQL 优化 · 容器化部署
 ```
 
 ---
