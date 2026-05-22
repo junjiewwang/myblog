@@ -68,4 +68,7 @@
   * **🎹 其他**
     * [五线谱快速记忆](/music/piano-staff-memory.md)
 
-* [关于我](/about/resume.md)
+* **📄 简历 / 关于我**
+  * [简历总览](/resume/README.md)
+  * **🛠️ 项目详情**
+    * [Java Agent 远程控制平面](/resume/projects/agent-control-plane.md)
