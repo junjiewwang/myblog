@@ -30,6 +30,9 @@
 * **🐹 Go 语言**
   * [Go 语言学习指南](/programmingLanguage/golang_study/GolangStudy.md)
 
+* **🗄️ 数据库**
+  * [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
+
 * **🔧 DevOps & 运维**
   * [Lima Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)
   * [Docker GUI (Linux)](/linux/docker_x11_gui.md)
