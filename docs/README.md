@@ -1,104 +1,78 @@
-# 后端工程师的实战笔记
+# 可观测性工程师的技术博客
 
-> 记录真实的开发经验，解决实际问题
->
----
-
-## ⭐ 精选文章
-
-### 深度教程
-
-| 文章 | 简介 |
-|------|------|
-| [Go 语言完整学习指南](/programmingLanguage/golang_study/GolangStudy.md) | 从入门到实战的系统教程，涵盖基础语法、并发编程、项目实战 |
-| [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md) | OpenTelemetry 延迟采样的完整设计与实现，包含架构决策和性能优化 |
-
-### 问题排查
-
-| 文章 | 简介 |
-|------|------|
-| [一次 Java HPROF 解析器的深度调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md) | 二进制格式解析与 Bug 定位的完整排查过程 |
-| [Arthas SpyAPI 二次 Attach 修复](/observability/otel-arthas-spyapi-initialization.md) | 解决二次 attach 场景下 trace 空转问题的完整分析与修复方案 |
-
-### 架构设计
-
-| 文章 | 简介 |
-|------|------|
-| [服务拓扑图实现方案设计](/observability/service-topology-design.md) | APM 服务拓扑图的 peer.service 配对方案，基于 Redis 的分层架构设计 |
-| [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md) | 分布式控制面的长连接管理、任务调度与状态上报架构设计 |
-| [Arthas Tunnel 分布式架构升级](/observability/otel-arthas-tunnel-distributed-upgrade.md) | 从故障治理到竞争力构建的分布式系统稳定性升级经验 |
-
-### 实用配置
-
-| 文章 | 简介 |
-|------|------|
-| [Docker 容器运行 GUI 程序 (Linux)](/linux/docker_x11_gui.md) | 在 Docker 中运行 IDEA 等 GUI 程序 |
-| [Docker 容器运行 GUI 程序 (Mac)](/mac/docker_gui.md) | Mac 上配置 Docker 显示 GUI 的完整方案 |
-| [Nginx 配置模板集合](/nginx/nginx_config.md) | 代理、WebSocket、文件服务等常用配置 |
-| [SpringBoot 分包部署](/springboot/spring_use_maven_divided_jar_run.md) | Maven 分离依赖，优化部署体积 |
+> 专注 APM / OpenTelemetry / Arthas 方向，记录真实的方案设计与问题排查
 
 ---
 
-## 📚 全部文章
+## ⭐ 代表作
 
-### ☕ Java & Spring
+### 方案设计
 
-- [Java HPROF 调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
-- [Arthas 异步分析器使用](/java/arthas-async-profiler.md)
-- [Arthas AnsiLog 可配置输出流 PR 方案](/java/arthas-ansilog-configurable-printstream.md)
-- [SpringBoot 分包部署](/springboot/spring_use_maven_divided_jar_run.md)
-- [Spring 代理问题记录](/springboot/spring_qa_record.md)
-- [SpringBoot 测试配置](/springboot/springboot-test.md)
-- [Swagger-UI 整合](/springboot/swagger-ui.md)
+| 文章 | 关键词 |
+|------|--------|
+| [OTel 延迟采样方案设计](/observability/design/otel-tail-based-sampling.md) | 头部采样 vs 尾部采样、完整架构决策、性能优化 |
+| [服务拓扑图实现方案](/observability/design/service-topology-design.md) | peer.service 配对、Redis 分层架构、实时拓扑 |
+| [Java Agent 控制平面架构](/observability/implementation/otel-java-agent-control-plane.md) | 远程配置下发、零重启生效、长连接 + 任务系统 |
 
-### 📡 可观测性 & OpenTelemetry
+### 深度排查
 
-- [服务拓扑图实现方案设计](/observability/service-topology-design.md)
-- [OTel 延迟采样方案设计](/observability/otel-tail-based-sampling.md)
-- [OTel Arthas Tunnel Extension](/observability/otel-arthas-tunnel-extension.md)
-- [OTel Arthas 生命周期管理](/observability/otel-arthas-lifecycle-management.md)
-- [OTel 控制面长连接与任务系统](/observability/otel-controlplane-longpoll-task-system.md)
-- [Arthas Tunnel 分布式架构升级](/observability/otel-arthas-tunnel-distributed-upgrade.md)
-- [Arthas SpyAPI 初始化机制分析](/observability/otel-arthas-spyapi-initialization.md)
-- [OTel Java 二次开发经验](/observability/otel-java-development.md)
-- [OTel Java Agent 控制平面](/observability/otel-java-agent-control-plane.md)
+| 文章 | 关键词 |
+|------|--------|
+| [一次 HPROF 解析器的深度调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md) | 二进制格式解析、6→37077 类、逐字节定位 |
+| [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md) | 二次 attach 空转、可证伪指标定位、根因修复 |
+| [Bootstrap ClassLoader 注入修复](/observability/implementation/otel-bootstrap-classloader-injection.md) | 类加载隔离、Agent 与宿主冲突、源码级排查 |
 
-### 🐹 Go 语言
+### 工程实现
 
-- [Go 语言完整学习指南](/programmingLanguage/golang_study/GolangStudy.md)
+| 文章 | 关键词 |
+|------|--------|
+| [控制面长连接与任务系统](/observability/implementation/otel-controlplane-longpoll-task-system.md) | 事件驱动、状态机、自愈机制 |
+| [Arthas Tunnel 分布式架构升级](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md) | Redis Lua 精度丢失修复、分布式一致性 |
+| [Arthas 生命周期管理](/observability/arthas/otel-arthas-lifecycle-management.md) | attach/detach 全链路闭环、异常自愈 |
 
-### 🔧 DevOps & 运维
+---
 
-- [Docker GUI 配置 (Linux)](/linux/docker_x11_gui.md)
-- [Docker GUI 配置 (Mac)](/mac/docker_gui.md)
-- [Nginx 配置集合](/nginx/nginx_config.md)
-- [Nginx 目录映射](/nginx/mapping_directory.md)
-- [VNC Server 安装](/linux/linux_vncserver.md)
-- [Vim 命令速查](/linux/linux_vim.md)
+## 📂 全部内容
 
-### 🍎 Mac 效率
+### 📡 可观测性 & APM
 
-- [Homebrew 使用记录](/mac/brew_record.md)
-- [Alfred 使用技巧](/mac/alfred_record.md)
+**方案设计**
+- [OTel 延迟采样方案设计](/observability/design/otel-tail-based-sampling.md)
+- [服务拓扑图实现方案设计](/observability/design/service-topology-design.md)
+- [peer.service 拓扑补齐方案](/observability/design/peer-service-topology-design.md)
+- [动态类增强与还原调研](/observability/design/otel-dynamic-instrumentation-design.md)
 
-### 🔢 算法
+**工程实现**
+- [Java Agent 控制平面架构](/observability/implementation/otel-java-agent-control-plane.md)
+- [控制面长连接与任务系统](/observability/implementation/otel-controlplane-longpoll-task-system.md)
+- [Bootstrap ClassLoader 注入修复](/observability/implementation/otel-bootstrap-classloader-injection.md)
 
-- [二叉树遍历算法](/data_structure_algorithms/binary_tree/binary_tree.md)
-- [LeetCode 树类题解](/leetcode/tree/tree.md)
+**Arthas 深度集成**
+- [Arthas Tunnel Extension](/observability/arthas/otel-arthas-tunnel-extension.md)
+- [Arthas 生命周期管理](/observability/arthas/otel-arthas-lifecycle-management.md)
+- [Arthas Tunnel 分布式升级](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md)
+- [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md)
 
-### 🎵 音乐学习
+### ☕ Java 深度
 
-- [吉他 CAGED 系统](/music/guitar-caged.md)
-- [五度圈理论与应用](/music/guitar-circle-of-fifths.md)
-- [吉他指板音符记忆](/music/guitar-fretboard.md)
-- [吉他学习路径](/music/guitar-learning.md)
-- [大调音阶详解](/music/guitar-major-scales.md)
-- [吉他调式理论](/music/guitar-modes.md)
-- [音阶度数与和弦构建](/music/guitar-scale-degrees.md)
-- [五线谱快速记忆法](/music/piano-staff-memory.md)
+- [HPROF 解析器调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
+- [Arthas AnsiLog 可配置输出流方案](/java/arthas-ansilog-configurable-printstream.md)
+- [Arthas + async-profiler 性能分析](/java/arthas-async-profiler.md)
+
+### 🗄️ 数据库
+
+- [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
+
+### 🛠️ 工程实践
+
+- [Lima + Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)
+
+### 🎵 音乐笔记
+
+- [吉他学习笔记](/music/guitar-learning.md) — 从乐理基础到进阶调式系统的完整学习记录
 
 ---
 
 <p align="center">
-  <sub>📅 持续更新中</sub>
+  <sub>📅 持续更新中 · 专注深度，拒绝水文</sub>
 </p>
