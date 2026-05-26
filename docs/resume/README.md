@@ -1,6 +1,6 @@
 # 个人简历
 
-> 5 年+后端开发经验，专注可观测性（APM）方向。工作之余深入研究 OpenTelemetry、Arthas 等开源项目，独立设计并实现了 Java Agent 远程控制平面、Arthas 生命周期管理等系统。擅长字节码增强、分布式诊断平台设计、JVM 深度调优。
+> 5 年+后端开发经验，专注可观测性（APM）方向。工作之余深入研究 OpenTelemetry、Arthas 等开源项目，独立设计并实现了 Java Agent 远程控制平面、Arthas 生命周期管理、AI Agent 运维自动化工具集等系统。擅长字节码增强、分布式诊断平台设计、JVM 深度调优，以及 AI Agent 编排与浏览器自动化。
 
 ---
 
@@ -20,6 +20,7 @@
 |------|--------|---------|
 | 核心语言 | Java、Go | 深入 JVM 内存模型 / 字节码 / 类加载机制 |
 | 可观测性 | OpenTelemetry、Arthas、ByteBuddy | 源码级研究，有 Issue 反馈与方案设计 |
+| AI 工程化 | AI Agent 编排、CDP（Chrome DevTools Protocol）、Playwright | 独立设计 10+ Skills 自动化体系 |
 | 通信协议 | gRPC / Protobuf / WebSocket / 长轮询 | 独立设计控制面协议 |
 | 中间件 | MySQL、Redis、Kafka、ElasticSearch | 生产使用与调优经验 |
 | 基础设施 | Docker、Kubernetes、Linux | 容器化部署与运维 |
@@ -91,6 +92,21 @@
 
 [→ 详细设计文档](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md)
 
+### AI Agent 运维自动化工具集
+
+**痛点**：日常运维涉及 API 调试、数据库查询、配置管理、链路排查等操作，分散在 6+ 个内部平台中，每次操作需手动构建复杂请求参数、登录多个系统、逐步串联数据——单次排查耗时 20~30 分钟，重复且易错
+
+**方案**：独立设计并实现一套 AI Agent Skills 体系（10+ Skills），通过自然语言驱动端到端运维自动化：
+
+- **CDP 浏览器自动化**：通过 Chrome DevTools Protocol 复用用户已认证的浏览器会话，WebSocket 调用 `Network.getCookies` 获取认证凭证、`Runtime.evaluate` 直接提取前端框架（Vue）组件内存数据——对比 Playwright 全量启动方案，启动开销从 ~2s 降至 ~50ms，且免去 SSO 模拟登录
+- **语义路由 + 通用执行器**：设计 API 语义别名注册表，Agent 匹配用户意图后自动提取参数、组装请求体、IP 直连发送；格式自动判断（UUID→RequestId / 32 位 hex→traceID）实现零确认执行
+- **跨系统数据流编排**：SQL 模板生成 → 数据库执行 → 数据处理 → 文档平台发布的全自动流水线；Trace 查询两步编排（查 traceID → 查完整调用树 → 生成控制台/日志链接）
+- **高可扩展架构**：「通用骨架 + 扩展点」模式，新增 API 场景仅需 ~70 行代码 + 注册表一行；三级渐进式加载优化 Token 消耗；降级容错（Cache Miss → 最小化模板、Cookie 过期 → CDP 自动刷新）
+
+**成果**：单次运维排查从 20~30 分钟降至 10 秒内；新场景开发成本降低 80%；已覆盖连通性检测（22 地域）、指标查询、链路追踪、数据库查询、配置管理、实例关联等全链路场景
+
+> 📌 因涉及内部系统，设计文档不便公开，面试时可详细介绍架构设计与技术决策。
+
 ---
 
 ## 核心能力
@@ -102,6 +118,8 @@
 **系统设计**：分布式控制面 · 状态机 · 长连接通信 · SPI 插件化 · 优雅降级
 
 **工程实践**：设计模式（8+ 种实践应用）· 协议设计（Protobuf）· 容错与自愈
+
+**AI 工程化**：AI Agent 编排架构 · CDP 浏览器协议 · 语义路由 · 跨系统自动化流水线
 
 ---
 
