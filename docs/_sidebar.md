@@ -24,6 +24,9 @@
   * [Arthas AnsiLog 可配置输出流方案](/java/arthas-ansilog-configurable-printstream.md)
   * [Arthas + async-profiler 性能分析](/java/arthas-async-profiler.md)
 
+* **🤖 AI 工程**
+  * [上下文工程：跨会话记忆共享的挑战与方案](/ai-engineering/context-engineering-thinking.md)
+
 * **🗄️ 数据库**
   * [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
 
