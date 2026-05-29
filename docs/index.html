@@ -2078,6 +2078,145 @@
             font-size: 12px;
         }
     }
+
+    /* ==================== 打印样式（PDF 导出优化） ==================== */
+    @media print {
+        /* 隐藏非内容元素 */
+        .sidebar,
+        .sidebar-toggle,
+        .app-nav,
+        .github-corner,
+        .back-to-top,
+        .docsify-toc,
+        .toc-container,
+        .toc-panel,
+        .toc-edge-btn,
+        .toc-fab {
+            display: none !important;
+        }
+
+        /* 隐藏字数统计 */
+        .docsify-count,
+        .markdown-section > p:first-child[style*="float"] {
+            display: none !important;
+        }
+
+        /* 内容区全宽，覆盖 TOC 面板导致的 padding-right */
+        .content,
+        .markdown-section {
+            max-width: 100% !important;
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 20px !important;
+        }
+
+        body:not(.toc-hidden) .content {
+            padding-right: 20px !important;
+        }
+
+        section.content {
+            left: 0 !important;
+        }
+
+        /* 基础排版 */
+        body {
+            font-size: 11pt !important;
+            line-height: 1.5 !important;
+            color: #000 !important;
+            background: white !important;
+        }
+
+        h1 {
+            font-size: 18pt !important;
+            margin-top: 0 !important;
+            page-break-after: avoid;
+        }
+
+        h2 {
+            font-size: 14pt !important;
+            margin-top: 12pt !important;
+            page-break-after: avoid;
+        }
+
+        h3 {
+            font-size: 12pt !important;
+            margin-top: 8pt !important;
+            page-break-after: avoid;
+        }
+
+        /* 表格优化 */
+        table {
+            font-size: 10pt !important;
+            width: 100% !important;
+            border-collapse: collapse !important;
+        }
+
+        th {
+            background: #333 !important;
+            color: white !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        td, th {
+            padding: 4px 8px !important;
+            border: 1px solid #ddd !important;
+        }
+
+        /* 链接显示 URL */
+        a[href^="http"]::after {
+            content: none !important;
+        }
+
+        a {
+            color: #000 !important;
+            text-decoration: none !important;
+        }
+
+        /* 避免段落断页 */
+        p, li {
+            orphans: 3;
+            widows: 3;
+        }
+
+        ul, ol {
+            page-break-inside: avoid;
+        }
+
+        /* blockquote 样式 */
+        blockquote {
+            border-left: 3px solid #333 !important;
+            padding-left: 10px !important;
+            margin-left: 0 !important;
+            color: #333 !important;
+            background: none !important;
+        }
+
+        /* 分隔线 */
+        hr {
+            border: none !important;
+            border-top: 1px solid #ccc !important;
+            margin: 10pt 0 !important;
+        }
+
+        /* 代码块 */
+        code {
+            background: #f5f5f5 !important;
+            padding: 1px 4px !important;
+            font-size: 9pt !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        pre {
+            page-break-inside: avoid;
+        }
+
+        /* 页面边距 */
+        @page {
+            margin: 15mm 12mm;
+        }
+    }
     </style>
 
     <!-- 回到顶部功能 -->
