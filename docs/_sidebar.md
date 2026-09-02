@@ -26,6 +26,7 @@
 
 * **🤖 AI 工程**
   * [上下文工程：跨会话记忆共享的挑战与方案](/ai-engineering/context-engineering-thinking.md)
+  * [AI Agent 面试 31 问：从原理到生产的深度回答指南](/ai-engineering/ai-agent-interview-guide.md)
 
 * **🗄️ 数据库**
   * [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
