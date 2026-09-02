@@ -2037,10 +2037,32 @@
         
         window.$docsify = window.$docsify || {};
         window.$docsify.plugins = (window.$docsify.plugins || []).concat(function(hook) {
+            // 两阶段替换：直接嵌 <div> 会被 marked 吞进前面的表格/列表（当作纯文本）。
+            // 阶段一 beforeEach：把 ```mermaid 代码块替换为纯文本占位符，避开 marked 解析；
+            // 阶段二 afterEach：把占位符替换回 <div class="mermaid">，源码经 HTML 实体转义，
+            // 浏览器解析后 textContent 可无损还原原始 mermaid 源码（含 <br/> 标签）。
+            var mermaidBlocks = [];
             hook.beforeEach(function(content) {
+                mermaidBlocks = [];
+                var idx = 0;
                 return content.replace(/```mermaid([\s\S]*?)```/g, function(match, code) {
-                    return '<div class="mermaid">' + code.trim() + '</div>';
+                    var placeholder = 'MERMAIDBLOCK' + (idx++) + 'X9Z';
+                    mermaidBlocks.push({ placeholder: placeholder, code: code.trim() });
+                    return '\n\n' + placeholder + '\n\n';
                 });
+            });
+            hook.afterEach(function(html) {
+                mermaidBlocks.forEach(function(block) {
+                    var escaped = block.code
+                        .replace(/&/g, '&amp;')
+                        .replace(/</g, '&lt;')
+                        .replace(/>/g, '&gt;');
+                    var div = '<div class="mermaid">' + escaped + '</div>';
+                    // 占位符通常被 marked 包在 <p> 里，两种情况都处理
+                    html = html.replace(new RegExp('<p>\\s*' + block.placeholder + '\\s*</p>', 'g'), div);
+                    html = html.replace(new RegExp(block.placeholder, 'g'), div);
+                });
+                return html;
             });
             hook.doneEach(function() {
                 mermaid.initialize(getMermaidConfig());
