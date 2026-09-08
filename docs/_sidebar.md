@@ -18,6 +18,8 @@
     * [Arthas 生命周期管理](/observability/arthas/otel-arthas-lifecycle-management.md)
     * [Arthas Tunnel 分布式升级](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md)
     * [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md)
+  * **📊 指标存储**
+    * [一个指标的冒险之旅](/observability/victoriametrics/metric-journey.md)
 
 * **☕ Java 深度**
   * [Java HPROF 解析器调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
