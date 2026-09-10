@@ -20,6 +20,7 @@
     * [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md)
   * **📊 指标存储**
     * [一个指标的冒险之旅](/observability/victoriametrics/metric-journey.md)
+    * [🏰 健忘的守门人：布隆过滤器](/observability/victoriametrics/bloom-filter-gatekeeper.md)
     * [Go 高并发技巧](/observability/victoriametrics/go-concurrency-primitives.md)
 
 * **☕ Java 深度**
