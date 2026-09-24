@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="370" viewBox="0 0 360 370" role="img" aria-labelledby="title desc">
+  <title id="title">切分计数：脚保持四拍，手在拍内起音</title>
+  <desc id="desc">4/4拍，脚踩1、2、3、4。下方放大一拍：十六加八分加十六在1、e、a起音；e比拍点晚四分之一拍，持续经过&amp;且不重弹。圆点为起音，横线为持续，大于号为本例的力度强调。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; --green: #10b981; --red: #ef4444; --marker: #0f172a; --line: #64748b; }
+    text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: var(--ink); }
+    .center { text-anchor: middle; }
+    .hint { fill: var(--muted); }
+    .pulse { fill: var(--ink); }
+    .short { fill: var(--green); }
+    .long { fill: var(--red); }
+    .onset { fill: var(--marker); }
+    .sustain { fill: none; stroke: var(--marker); stroke-width: 2; }
+    .grid { fill: none; stroke: var(--line); stroke-width: 0.7; stroke-dasharray: 2 3; }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; --green: #34d399; --red: #f87171; --line: #94a3b8; }
+    }
+  </style>
+  <text class="hint" x="16" y="24">4/4 拍；四分音符 = 1 拍</text>
+  <text x="16" y="60">脚</text>
+  <g class="center"><text x="88" y="54">1</text><text x="156" y="54">2</text><text x="224" y="54">3</text><text x="292" y="54">4</text></g>
+  <g id="foot-pulses" class="pulse"><circle cx="88" cy="74" r="5"/><circle cx="156" cy="74" r="5"/><circle cx="224" cy="74" r="5"/><circle cx="292" cy="74" r="5"/></g>
+  <text class="hint" x="16" y="107">每拍均匀踩一次，不跟着切分起音跑。</text>
+  <text x="16" y="147">放大一拍：十六 + 八分 + 十六</text>
+  <g class="center"><text x="104" y="180">1</text><text x="154" y="180">e</text><text x="204" y="180">&amp;</text><text x="254" y="180">a</text><text x="304" y="180">下拍</text></g>
+  <path class="grid" d="M104 186V266 M154 186V266 M204 186V266 M254 186V266 M304 186V266"/>
+  <g id="beat-pattern">
+    <rect class="short" x="104" y="210" width="46" height="28" rx="3"/>
+    <rect class="long" x="154" y="210" width="96" height="28" rx="3"/>
+    <rect class="short" x="254" y="210" width="46" height="28" rx="3"/>
+    <circle class="onset" cx="109" cy="224" r="3"/><circle class="onset" cx="159" cy="224" r="3"/><circle class="onset" cx="259" cy="224" r="3"/>
+    <path class="sustain" d="M198 224H214"/>
+  </g>
+  <text class="center" x="159" y="205">&gt;</text>
+  <text class="hint" x="16" y="285">e 晚于拍点一格 = 1/4 拍。</text>
+  <text class="hint" x="16" y="309">中间音持续经过 &amp;，此处不重弹。</text>
+  <text class="hint" x="16" y="333">圆点 = 起音；横线 = 持续；&gt; = 强调。</text>
+  <text class="hint" x="16" y="357">色块末的留缝只作分隔，不表示休止。</text>
+</svg>

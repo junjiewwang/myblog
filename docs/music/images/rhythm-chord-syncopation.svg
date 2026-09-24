@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="460" viewBox="0 0 360 460" role="img" aria-labelledby="title desc">
+  <title id="title">4536251：给每个和弦套用一拍切分</title>
+  <desc id="desc">从上到下F、G、Em、Am、Dm、G、C，每行示范一个四分拍，不是一个完整小节。每行在1、e、a起音，e处八分音持续经过&amp;。颜色区分长短，圆点表示起音，横线表示持续。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; --green: #10b981; --red: #ef4444; --marker: #0f172a; }
+    text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: var(--ink); }
+    .label { text-anchor: end; font-size: 17px; }
+    .count { text-anchor: middle; }
+    .hint { fill: var(--muted); }
+    .short { fill: var(--green); }
+    .long { fill: var(--red); }
+    .onset { fill: var(--marker); }
+    .sustain { fill: none; stroke: var(--marker); stroke-width: 2; }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; --green: #34d399; --red: #f87171; }
+    }
+  </style>
+  <defs>
+    <g id="chord-beat">
+      <rect class="short" x="0" width="46" height="28" rx="3"/>
+      <rect class="long" x="50" width="96" height="28" rx="3"/>
+      <rect class="short" x="150" width="46" height="28" rx="3"/>
+      <circle class="onset" cx="5" cy="14" r="3"/><circle class="onset" cx="55" cy="14" r="3"/><circle class="onset" cx="155" cy="14" r="3"/>
+      <path class="sustain" d="M94 14H110"/>
+    </g>
+  </defs>
+  <text class="hint" x="16" y="25">每行 = 1 个四分拍，仅示范局部组合</text>
+  <g class="count"><text x="112" y="55">1</text><text x="162" y="55">e</text><text x="212" y="55">&amp;</text><text x="262" y="55">a</text><text x="312" y="55">下拍</text></g>
+  <text class="label" x="88" y="91">F</text><use href="#chord-beat" x="112" y="72"/>
+  <text class="label" x="88" y="135">G</text><use href="#chord-beat" x="112" y="116"/>
+  <text class="label" x="88" y="179">Em</text><use href="#chord-beat" x="112" y="160"/>
+  <text class="label" x="88" y="223">Am</text><use href="#chord-beat" x="112" y="204"/>
+  <text class="label" x="88" y="267">Dm</text><use href="#chord-beat" x="112" y="248"/>
+  <text class="label" x="88" y="311">G</text><use href="#chord-beat" x="112" y="292"/>
+  <text class="label" x="88" y="355">C</text><use href="#chord-beat" x="112" y="336"/>
+  <text class="hint" x="16" y="395">圆点 = 起音；横线 = 持续。</text>
+  <text class="hint" x="16" y="419">末格 a 是弱位，也要重新起音。</text>
+  <text class="hint" x="16" y="443">绿 / 红区分短 / 长音，不代表左右手。</text>
+</svg>

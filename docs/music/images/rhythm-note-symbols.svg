@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="290" viewBox="0 0 360 290" role="img" aria-labelledby="title desc">
+  <title id="title">音符形状：空心、实心与符尾数量</title>
+  <desc id="desc">全音符与二分音符为空心；四分及更短音符为实心。八分、十六分、三十二分分别有一、二、三条符尾。符尾形状为简化示意。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; }
+    .ink { fill: var(--ink); }
+    .outline { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+    .muted { fill: var(--muted); }
+    text { font-family: system-ui, -apple-system, sans-serif; text-anchor: middle; font-size: 14px; }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; }
+    }
+  </style>
+  <g class="ink">
+    <g transform="translate(60 65)">
+      <ellipse class="outline" rx="10" ry="7"/>
+      <text y="32">全音符</text><text class="muted" y="53">空心，无符干</text>
+    </g>
+    <g transform="translate(180 65)">
+      <ellipse class="outline" rx="9" ry="6.5"/>
+      <path class="outline" d="M9 0 V-38"/>
+      <text y="32">二分音符</text><text class="muted" y="53">空心，有符干</text>
+    </g>
+    <g transform="translate(300 65)">
+      <ellipse rx="9" ry="6.5"/>
+      <path class="outline" d="M9 0 V-38"/>
+      <text y="32">四分音符</text><text class="muted" y="53">实心，无符尾</text>
+    </g>
+    <g transform="translate(60 205)">
+      <ellipse rx="9" ry="6.5"/>
+      <path class="outline" d="M9 0 V-38"/>
+      <path d="M9-38 Q30-30 16-16 Q23-29 9-28 Z"/>
+      <text y="32">八分音符</text><text class="muted" y="53">1 条符尾</text>
+    </g>
+    <g transform="translate(180 205)">
+      <ellipse rx="9" ry="6.5"/>
+      <path class="outline" d="M9 0 V-38"/>
+      <path d="M9-38 Q30-30 16-16 Q23-29 9-28 Z M9-29 Q30-21 16-7 Q23-20 9-19 Z"/>
+      <text y="32">十六分音符</text><text class="muted" y="53">2 条符尾</text>
+    </g>
+    <g transform="translate(300 205)">
+      <ellipse rx="9" ry="6.5"/>
+      <path class="outline" d="M9 0 V-44"/>
+      <path d="M9-44 Q30-36 16-22 Q23-35 9-34 Z M9-35 Q30-27 16-13 Q23-26 9-25 Z M9-26 Q30-18 16-4 Q23-17 9-16 Z"/>
+      <text y="32">三十二分音符</text><text class="muted" y="53">3 条符尾</text>
+    </g>
+  </g>
+</svg>

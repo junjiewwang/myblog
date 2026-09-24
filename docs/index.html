@@ -2643,6 +2643,7 @@
         
         // 窗口大小变化时重新检测
         window.addEventListener('resize', function() {
+            wrapTables();
             var wrappers = document.querySelectorAll('.table-wrapper');
             wrappers.forEach(checkTableScroll);
         });

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="440" viewBox="0 0 360 440" role="img" aria-labelledby="title desc">
+  <title id="title">四分拍内的节奏组合</title>
+  <desc id="desc">绿色行使用十六分四格；琥珀色三连音单独三等分。每个连续块是一音，块的左边界为起音；切分行在1、e、a起音，e处的音持续经过&amp;。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; --green: #10b981; --amber: #f59e0b; --red: #ef4444; --line: #475569; }
+    text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: var(--ink); }
+    .label { text-anchor: end; }
+    .count { text-anchor: middle; }
+    .hint { fill: var(--muted); }
+    .binary rect { fill: var(--green); }
+    .triplet rect { fill: var(--amber); }
+    .binary .accent { fill: var(--red); }
+    .guides { fill: none; stroke: var(--line); stroke-width: 0.7; stroke-dasharray: 2 3; opacity: 0.5; }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; --green: #34d399; --amber: #fbbf24; --red: #f87171; --line: #94a3b8; }
+    }
+  </style>
+  <text x="16" y="24" class="hint">四分音符 = 1 拍；十六分格 = 1/4 拍</text>
+  <g class="count"><text x="120" y="48">1</text><text x="170" y="48">e</text><text x="220" y="48">&amp;</text><text x="270" y="48">a</text><text x="320" y="48">下拍</text></g>
+  <path class="guides" d="M120 54V327 M170 54V327 M220 54V327 M270 54V327 M320 54V327"/>
+  <g class="binary">
+    <text class="label" x="108" y="79">四分音符</text><rect x="120" y="62" width="196" height="24" rx="3"/>
+    <text class="label" x="108" y="118">两个八分</text><rect x="120" y="101" width="96" height="24" rx="3"/><rect x="220" y="101" width="96" height="24" rx="3"/>
+    <text class="label" x="108" y="157">四个十六分</text><rect x="120" y="140" width="46" height="24" rx="3"/><rect x="170" y="140" width="46" height="24" rx="3"/><rect x="220" y="140" width="46" height="24" rx="3"/><rect x="270" y="140" width="46" height="24" rx="3"/>
+    <text class="label" x="108" y="196">前8后16</text><rect x="120" y="179" width="96" height="24" rx="3"/><rect x="220" y="179" width="46" height="24" rx="3"/><rect x="270" y="179" width="46" height="24" rx="3"/>
+    <text class="label" x="108" y="235">前16后8</text><rect x="120" y="218" width="46" height="24" rx="3"/><rect x="170" y="218" width="46" height="24" rx="3"/><rect x="220" y="218" width="96" height="24" rx="3"/>
+    <g id="dotted-front"><text class="label" x="108" y="274">前附点</text><rect x="120" y="257" width="146" height="24" rx="3"/><rect x="270" y="257" width="46" height="24" rx="3"/></g>
+    <g id="dotted-back"><text class="label" x="108" y="313">后附点</text><rect x="120" y="296" width="46" height="24" rx="3"/><rect x="170" y="296" width="146" height="24" rx="3"/></g>
+  </g>
+  <g class="triplet"><text class="label" x="108" y="352">三连音</text><rect x="120" y="335" width="62.6667" height="24" rx="3"/><rect x="186.6667" y="335" width="62.6667" height="24" rx="3"/><rect x="253.3333" y="335" width="62.6667" height="24" rx="3"/></g>
+  <g class="binary"><text class="label" x="108" y="391">切分 1+2+1</text><rect x="120" y="374" width="46" height="24" rx="3"/><rect class="accent" x="170" y="374" width="96" height="24" rx="3"/><rect x="270" y="374" width="46" height="24" rx="3"/></g>
+  <text class="hint" x="16" y="420">每块一音；块末留缝仅为分隔，不是休止。</text>
+</svg>

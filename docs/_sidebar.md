@@ -43,6 +43,7 @@
     * [吉他学习笔记](/music/guitar-learning.md)
     * [进阶学习计划](/music/guitar-advanced-plan.md)
   * **🎼 乐理基础**
+    * [节奏系统基础](/music/rhythm-system-foundation.md)
     * [指板音名图](/music/guitar-fretboard.md)
     * [音级与功能和声](/music/guitar-scale-degrees.md)
     * [自然大调音阶](/music/guitar-major-scales.md)

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="380" viewBox="0 0 360 380" role="img" aria-labelledby="title desc">
+  <title id="title">节拍层级与6/8的3+3分组</title>
+  <desc id="desc">2/4、3/4、4/4每点代表四分音符拍；6/8每点代表八分音符细分，三个一组，共两个大拍。强弱表示节拍层级，不要求所有实际演奏都按图加重音。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; --red: #ef4444; --amber: #f59e0b; --line: #64748b; }
+    text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: var(--ink); }
+    .hint { fill: var(--muted); }
+    .strong { fill: var(--red); }
+    .secondary { fill: var(--amber); }
+    .weak { fill: none; stroke: var(--line); stroke-width: 1.5; }
+    .group { fill: none; stroke: var(--line); stroke-width: 1; }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; --red: #f87171; --amber: #fbbf24; --line: #94a3b8; }
+    }
+  </style>
+  <text class="hint" x="16" y="24">上三行：每点 = 1 个四分音符拍</text>
+  <text x="24" y="62">2/4</text><circle class="strong" cx="130" cy="57" r="9"/><circle class="weak" cx="190" cy="57" r="6"/>
+  <text class="hint" x="24" y="88">强 · 弱</text>
+  <text x="24" y="127">3/4</text><circle class="strong" cx="130" cy="122" r="9"/><circle class="weak" cx="190" cy="122" r="6"/><circle class="weak" cx="250" cy="122" r="6"/>
+  <text class="hint" x="24" y="153">强 · 弱 · 弱</text>
+  <text x="24" y="192">4/4</text><circle class="strong" cx="130" cy="187" r="9"/><circle class="weak" cx="190" cy="187" r="6"/><circle class="secondary" cx="250" cy="187" r="7"/><circle class="weak" cx="310" cy="187" r="6"/>
+  <text class="hint" x="24" y="218">强 · 弱 · 次强 · 弱</text>
+  <text class="hint" x="16" y="253">下行：每点 = 八分细分；3 点 = 1 大拍</text>
+  <text x="24" y="291">6/8</text>
+  <g id="compound-pulses"><circle class="strong" cx="130" cy="286" r="9"/><circle class="weak" cx="166" cy="286" r="6"/><circle class="weak" cx="202" cy="286" r="6"/><circle class="secondary" cx="238" cy="286" r="7"/><circle class="weak" cx="274" cy="286" r="6"/><circle class="weak" cx="310" cy="286" r="6"/></g>
+  <path class="group" d="M120 301V310H212V301 M228 301V310H320V301"/>
+  <text class="hint" x="134" y="331">1-2-3</text><text class="hint" x="242" y="331">2-2-3</text>
+  <text class="hint" x="16" y="363">红 / 橙 / 空心 = 强 / 次强 / 弱位置。</text>
+</svg>

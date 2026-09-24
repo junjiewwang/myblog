@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="350" viewBox="0 0 360 350" role="img" aria-labelledby="title desc">
+  <title id="title">音的时值长短对比</title>
+  <desc id="desc">以四分音符为一拍，六条蓝色长度条从全音符四拍开始逐级减半，最后为三十二分音符八分之一拍。</desc>
+  <style>
+    svg { --ink: #1e293b; --muted: #475569; --bar: #3b82f6; }
+    text { font-family: system-ui, -apple-system, sans-serif; font-size: 14px; fill: var(--ink); }
+    .note { text-anchor: end; }
+    .duration, .hint { fill: var(--muted); }
+    rect { fill: var(--bar); }
+    @media (prefers-color-scheme: dark) {
+      svg { --ink: #e2e8f0; --muted: #cbd5e1; --bar: #60a5fa; }
+    }
+  </style>
+  <text class="hint" x="16" y="25">本图：四分音符 = 1 拍</text>
+  <text class="note" x="94" y="64">全音符</text>
+  <rect x="104" y="49" width="192" height="24" rx="3"/><text class="duration" x="303" y="64">4 拍</text>
+  <text class="note" x="94" y="115">二分音符</text>
+  <rect x="104" y="100" width="96" height="24" rx="3"/><text class="duration" x="207" y="115">2 拍</text>
+  <text class="note" x="94" y="166">四分音符</text>
+  <rect x="104" y="151" width="48" height="24" rx="3"/><text class="duration" x="159" y="166">1 拍</text>
+  <text class="note" x="94" y="217">八分音符</text>
+  <rect x="104" y="202" width="24" height="24" rx="3"/><text class="duration" x="135" y="217">1/2 拍</text>
+  <text class="note" x="94" y="268">十六分音符</text>
+  <rect x="104" y="253" width="12" height="24" rx="2"/><text class="duration" x="123" y="268">1/4 拍</text>
+  <text class="note" x="94" y="319">三十二分</text>
+  <rect x="104" y="304" width="6" height="24" rx="1"/><text class="duration" x="117" y="319">1/8 拍</text>
+</svg>
