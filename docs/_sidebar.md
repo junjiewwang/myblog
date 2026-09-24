@@ -50,6 +50,7 @@
     * [调式与组成音](/music/guitar-modes.md)
     * [七调式系统教程](/music/guitar-modes-tutorial.md)
   * **🎯 和弦与音阶系统**
+    * [和弦系统基础（C调）](/music/chord-system-foundation.md)
     * [CAGED 和弦系统](/music/guitar-caged.md)
     * [和弦转位与指板](/music/guitar-chord-inversions.md)
     * [Drop2 和弦与转位](/music/guitar-drop2.md)
