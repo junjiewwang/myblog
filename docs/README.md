@@ -63,6 +63,10 @@
 
 - [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
 
+### 🔢 算法
+
+- [翻转链表：把一个「简单」问题讲透](/algorithms/list/reverse-linked-list.md) — 4 种实现 + 复杂度推导 + 执行过程动画
+
 ### 🛠️ 工程实践
 
 - [Lima + Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)

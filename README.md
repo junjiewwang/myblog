@@ -8,7 +8,7 @@
 - **🐹 Go 语言** - Go 语言完整学习指南
 - **🔧 DevOps & 运维** - Docker GUI、Nginx 配置、VNC Server、Vim 命令
 - **🍎 Mac 效率** - Homebrew、Alfred 使用技巧
-- **🔢 算法** - 二叉树遍历、LeetCode 题解
+- **🔢 算法** - 翻转链表（多种实现 + 执行过程动画）
 - **🎵 音乐** - 吉他学习笔记
 
 ## 🚀 本地运行
@@ -27,14 +27,16 @@ npm run dev
 
 ```
 docs/
+├── algorithms/     # 算法（含 assets 动画资源）
+├── observability/  # 可观测性 & APM
 ├── java/           # Java 相关
-├── springboot/     # Spring Boot
-├── programmingLanguage/  # 编程语言
-├── linux/          # Linux 运维
+├── ai-engineering/ # AI 工程
+├── database/       # 数据库
 ├── mac/            # Mac 效率
-├── nginx/          # Nginx 配置
 ├── music/          # 音乐学习
-└── data_structure_algorithms/  # 数据结构与算法
+└── ...
+scripts/
+└── algo-visualizer/  # 算法动画生成脚本（Python + Pillow）
 ```
 
 ## 📄 License

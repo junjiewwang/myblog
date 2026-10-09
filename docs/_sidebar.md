@@ -35,6 +35,11 @@
 * **🗄️ 数据库**
   * [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
 
+* **🔢 算法**
+  * **🔗 链表**
+    * [翻转链表](/algorithms/list/reverse-linked-list.md)
+  * *（树 / 排序 / 图 / 动态规划 待补充）*
+
 * **🛠️ 工程实践**
   * [Lima + Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)
 
