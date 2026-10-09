@@ -17,7 +17,7 @@
 
 下面是**迭代法**的完整执行过程（蓝色 `prev`、橙色 `curr`、绿色 `next` 三个游标；弧线箭头表示已反转的指针，直线箭头表示未反转部分）：
 
-![翻转链表迭代法执行过程动画](/algorithms/assets/reverse-linked-list/reverse-iter.gif)
+![翻转链表迭代法执行过程动画](../assets/reverse-linked-list/reverse-iter.gif)
 
 看动画时建议盯住三个问题：
 
