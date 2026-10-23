@@ -67,6 +67,16 @@
 
 - [翻转链表：把一个「简单」问题讲透](/algorithms/list/reverse-linked-list.md) — 4 种实现 + 复杂度推导 + 执行过程动画
 
+### 🧱 设计原则与模式
+
+- [系列导读](/design-principles/README.md) — 六大原则 + 23 模式 + 业务实践，以 APM 四层架构为贯穿案例
+- [六大设计原则](/design-principles/01-principles/01-srp.md) — SRP/OCP/LSP/ISP/DIP/LoD 一条因果链，从「变化」讲起
+- [工程实践原则](/design-principles/02-engineering/01-cohesion-coupling.md) — 高内聚低耦合 / 可扩展性 / 健壮性 / 可测试性
+- [设计模式总纲](/design-principles/03-patterns/overview.md) — 三分类地图 + 「原则→模式」映射表 + 23 模式 APM 落点
+- [23 种设计模式](/design-principles/03-patterns/creational/factory-method.md) — 创建型 5 / 结构型 7 / 行为型 11，每篇含 APM 真实落点与 Go 代码
+- [业务实践](/design-principles/04-practice/01-real-world-refactor.md) — 重构实战完整闭环 + 反模式与过度设计
+- [Agent 时代](/design-principles/05-agent-era/design-with-ai-agent.md) — 用设计原则指挥 AI 写「能改」的代码
+
 ### 🛠️ 工程实践
 
 - [Lima + Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)

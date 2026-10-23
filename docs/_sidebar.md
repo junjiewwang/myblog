@@ -40,6 +40,55 @@
     * [翻转链表](/algorithms/list/reverse-linked-list.md)
   * *（树 / 排序 / 图 / 动态规划 待补充）*
 
+* **🧱 设计原则与模式**
+  * **📖 序章**
+    * [为什么 AI 时代更需要设计原则](/design-principles/00-prologue/why-design-principles.md)
+  * **📐 六大设计原则**
+    * [单一职责 SRP](/design-principles/01-principles/01-srp.md)
+    * [开放封闭 OCP](/design-principles/01-principles/02-ocp.md)
+    * [里氏替换 LSP](/design-principles/01-principles/03-lsp.md)
+    * [接口隔离 ISP](/design-principles/01-principles/04-isp.md)
+    * [依赖倒置 DIP](/design-principles/01-principles/05-dip.md)
+    * [迪米特法则 LoD](/design-principles/01-principles/06-lod.md)
+  * **🛠️ 工程实践原则**
+    * [高内聚低耦合](/design-principles/02-engineering/01-cohesion-coupling.md)
+    * [可扩展性](/design-principles/02-engineering/02-extensibility.md)
+    * [健壮性](/design-principles/02-engineering/03-robustness.md)
+    * [可单元测试](/design-principles/02-engineering/04-testability.md)
+  * **⚙️ 设计模式**
+    * [设计模式总纲](/design-principles/03-patterns/overview.md)
+    * **🏗️ 创建型**
+      * [工厂方法](/design-principles/03-patterns/creational/factory-method.md)
+      * [抽象工厂](/design-principles/03-patterns/creational/abstract-factory.md)
+      * [建造者](/design-principles/03-patterns/creational/builder.md)
+      * [单例](/design-principles/03-patterns/creational/singleton.md)
+      * [原型](/design-principles/03-patterns/creational/prototype.md)
+    * **🧩 结构型**
+      * [适配器](/design-principles/03-patterns/structural/adapter.md)
+      * [装饰器](/design-principles/03-patterns/structural/decorator.md)
+      * [门面](/design-principles/03-patterns/structural/facade.md)
+      * [组合](/design-principles/03-patterns/structural/composite.md)
+      * [代理](/design-principles/03-patterns/structural/proxy.md)
+      * [桥接](/design-principles/03-patterns/structural/bridge.md)
+      * [享元](/design-principles/03-patterns/structural/flyweight.md)
+    * **🔀 行为型**
+      * [策略](/design-principles/03-patterns/behavioral/strategy.md)
+      * [观察者](/design-principles/03-patterns/behavioral/observer.md)
+      * [状态](/design-principles/03-patterns/behavioral/state.md)
+      * [模板方法](/design-principles/03-patterns/behavioral/template-method.md)
+      * [责任链](/design-principles/03-patterns/behavioral/chain-of-responsibility.md)
+      * [命令](/design-principles/03-patterns/behavioral/command.md)
+      * [中介者](/design-principles/03-patterns/behavioral/mediator.md)
+      * [备忘录](/design-principles/03-patterns/behavioral/memento.md)
+      * [迭代器](/design-principles/03-patterns/behavioral/iterator.md)
+      * [解释器](/design-principles/03-patterns/behavioral/interpreter.md)
+      * [访问者](/design-principles/03-patterns/behavioral/visitor.md)
+  * **🏭 业务实践**
+    * [重构实战：600 行 if-else 的救赎](/design-principles/04-practice/01-real-world-refactor.md)
+    * [反模式与过度设计](/design-principles/04-practice/02-anti-patterns.md)
+  * **🤖 Agent 时代**
+    * [用设计原则给 AI 写 Prompt](/design-principles/05-agent-era/design-with-ai-agent.md)
+
 * **🛠️ 工程实践**
   * [Lima + Docker + Minikube 环境搭建](/mac/lima-docker-minikube-setup.md)
 
