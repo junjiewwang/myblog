@@ -10,6 +10,8 @@
     * [peer.service 拓扑补齐方案](/observability/design/peer-service-topology-design.md)
     * [动态类增强与还原调研](/observability/design/otel-dynamic-instrumentation-design.md)
   * **🔨 工程实现**
+    * [Java Agent 加载顺序与增强时机](/observability/implementation/otel-javaagent-loading-order.md)
+    * [Spring Boot 中使用 Meter.batchCallback](/observability/implementation/otel-meter-batchcallback-springboot.md)
     * [Java Agent 控制平面架构](/observability/implementation/otel-java-agent-control-plane.md)
     * [控制面长连接与任务系统](/observability/implementation/otel-controlplane-longpoll-task-system.md)
     * [Bootstrap ClassLoader 注入修复](/observability/implementation/otel-bootstrap-classloader-injection.md)
@@ -24,6 +26,7 @@
     * [Go 高并发技巧](/observability/victoriametrics/go-concurrency-primitives.md)
 
 * **☕ Java 深度**
+  * [Java 类加载、初始化与执行顺序](/java/java-class-init-order.md)
   * [Java HPROF 解析器调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
   * [Arthas AnsiLog 可配置输出流方案](/java/arthas-ansilog-configurable-printstream.md)
   * [Arthas + async-profiler 性能分析](/java/arthas-async-profiler.md)

@@ -43,6 +43,8 @@
 - [动态类增强与还原调研](/observability/design/otel-dynamic-instrumentation-design.md)
 
 **工程实现**
+- [Java Agent 加载顺序与增强时机](/observability/implementation/otel-javaagent-loading-order.md) — premain 链路、三层类加载器、增强在 new 之前还是之后（源码 + 实验）
+- [Spring Boot 中使用 Meter.batchCallback](/observability/implementation/otel-meter-batchcallback-springboot.md) — GlobalOpenTelemetry 为什么拿到 noop、agent 桥接原理、推荐写法（源码 + 实验）
 - [Java Agent 控制平面架构](/observability/implementation/otel-java-agent-control-plane.md)
 - [控制面长连接与任务系统](/observability/implementation/otel-controlplane-longpoll-task-system.md)
 - [Bootstrap ClassLoader 注入修复](/observability/implementation/otel-bootstrap-classloader-injection.md)
@@ -55,6 +57,7 @@
 
 ### ☕ Java 深度
 
+- [Java 类加载、初始化与执行顺序](/java/java-class-init-order.md) — static、代码块、构造函数、继承下的执行顺序，哪些操作不触发初始化（实验）
 - [HPROF 解析器调试之旅](/java/一次Java%20HPROF解析器的深度调试之旅.md)
 - [Arthas AnsiLog 可配置输出流方案](/java/arthas-ansilog-configurable-printstream.md)
 - [Arthas + async-profiler 性能分析](/java/arthas-async-profiler.md)
