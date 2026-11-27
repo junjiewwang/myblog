@@ -24,6 +24,18 @@
     * [一个指标的冒险之旅](/observability/victoriametrics/metric-journey.md)
     * [🏰 健忘的守门人：布隆过滤器](/observability/victoriametrics/bloom-filter-gatekeeper.md)
     * [Go 高并发技巧](/observability/victoriametrics/go-concurrency-primitives.md)
+  * **ClickHouse 可观测性存储**
+    * [系列导读与证据边界](/observability/clickhouse/README.md)
+    * [01 定位与架构](/observability/clickhouse/01-role-and-architecture.md)
+    * [02 MergeTree 落盘原理](/observability/clickhouse/02-mergetree-internals.md)
+    * [03 Schema 与访问模式](/observability/clickhouse/03-schema-and-access-patterns.md)
+    * [04 写入确认与可靠投递](/observability/clickhouse/04-ingestion-and-delivery.md)
+    * [05 Trace 与日志查询](/observability/clickhouse/05-trace-and-log-queries.md)
+    * [06 指标与物化视图](/observability/clickhouse/06-metrics-and-materialized-views.md)
+    * [07 索引与查询调优](/observability/clickhouse/07-indexes-and-query-tuning.md)
+    * [08 集群与可靠性](/observability/clickhouse/08-clusters-and-reliability.md)
+    * [09 保留、成本与运维](/observability/clickhouse/09-retention-cost-and-operations.md)
+    * [10 实验与面试](/observability/clickhouse/10-labs-and-interview.md)
 
 * **☕ Java 深度**
   * [Java 类加载、初始化与执行顺序](/java/java-class-init-order.md)

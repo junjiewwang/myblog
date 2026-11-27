@@ -55,6 +55,11 @@
 - [Arthas Tunnel 分布式升级](/observability/arthas/otel-arthas-tunnel-distributed-upgrade.md)
 - [Arthas SpyAPI 初始化机制分析](/observability/arthas/otel-arthas-spyapi-initialization.md)
 
+**ClickHouse 可观测性存储**
+- [系列导读](/observability/clickhouse/README.md) — 10 篇专题：原理、Schema、可靠写入、查询、聚合、集群与运维；区分官方机制和待执行实验
+- [从 Span 到指标](/observability/clickhouse/06-metrics-and-materialized-views.md) — 采样口径、重复数据、聚合状态与物化视图边界
+- [实验与面试](/observability/clickhouse/10-labs-and-interview.md) — 对照实验、故障验证与有证据的技术表达
+
 ### ☕ Java 深度
 
 - [Java 类加载、初始化与执行顺序](/java/java-class-init-order.md) — static、代码块、构造函数、继承下的执行顺序，哪些操作不触发初始化（实验）
@@ -65,6 +70,7 @@
 ### 🗄️ 数据库
 
 - [MySQL 联合索引优化实战](/database/mysql-index-optimization-case.md)
+- [ClickHouse 可观测性存储系列](/observability/clickhouse/README.md) — 通用 CK 原理与 APM 场景，正文统一归档于可观测性栏目
 
 ### 🔢 算法
 
